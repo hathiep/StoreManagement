@@ -34,8 +34,8 @@ public class ItemController {
     }
 
     @GetMapping("/items/search")
-    public List<Item> searchItems(@RequestParam("keyword") String keyword){
-        return itemService.findByKeyword(keyword);
+    public List<Item> searchItems(@RequestParam(name="bill_id") int billId){
+        return itemService.findByBillId(billId);
     }
 
     @DeleteMapping("/item/delete")

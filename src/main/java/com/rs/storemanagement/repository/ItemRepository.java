@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query(value = "SELECT * FROM item i WHERE" +
-            " i.bill_id LIKE %:keyword% OR", nativeQuery = true)
-    List<Item> searchItem(@Param("keyword") String keyword);
+            " i.bill_id = %:billId% ", nativeQuery = true)
+    List<Item> searchItem(@Param("billId") Integer billId);
 }

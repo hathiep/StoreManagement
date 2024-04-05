@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ItemService {
-    List<Item> findByKeyword(String keyword);
+    List<Item> findByBillId(int billId);
     Item save(Item product);
     List<Item> findAll();
     Optional<Item> findById(int id);

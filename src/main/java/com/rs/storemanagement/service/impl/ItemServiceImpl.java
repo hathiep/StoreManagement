@@ -17,8 +17,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Item> findByKeyword(String keyword) {
-        return itemRepository.searchItem(keyword);
+    public List<Item> findByBillId(int billId) {
+        return itemRepository.searchItem(billId);
     }
 
     @Override
