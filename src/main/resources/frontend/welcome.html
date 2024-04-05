@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chào mừng</title>
+</head>
+<body>
+    <h1>Chào mừng bạn đã đăng nhập!</h1>
+    <div id="user-info"></div>
+
+    <script>
+        // Retrieve user data from localStorage
+        var userData = JSON.parse(localStorage.getItem('currentUser'));
+
+        // Display user info
+        if(userData) {
+            document.getElementById("user-info").innerHTML = `
+                <p>Email: ${userData.email}</p>
+                <p>Tên: ${userData.name}</p>
+            `;
+        } else {
+            document.getElementById("user-info").innerHTML = "<p>Không có thông tin người dùng.</p>";
+        }
+    </script>
+</body>
+</html>
