@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Thêm sản phẩm</title>
+
+    <link type="text/css" href="files/css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="files/js/jquery_min.js"></script>
+    <script type="text/javascript" src="files/js/product.js"></script>
+</head>
+
+<body>
+    <!--HEADER-->
+    <div class="header">
+        <a href="#" title="Quản lý sản phẩm" style="outline:none;">
+            <h1>THÊM SẢN PHẨM</h1>
+        </a>
+        <div class="logout">
+            Xin chào <b>Trần Thanh Tuấn</b> | <a href="#" title="Log out">Log out
+        </div>
+        <!--NAVIGATION BAR-->
+        <ul class="navigation">
+            <a href="product.html" title="Quản lý sản phẩm" class="navigation-item-selected"><li>Quản lý sản phẩm</li></a>
+            <a href="#" title="Nhập hàng">
+                <li>Nhập hàng</li>
+            </a>
+            <a href="createSupplier.html" title="Thêm nhà cung cấp">
+                <li>Thêm nhà cung cấp</li>
+            </a>
+            </ul>
+            <!--NAVIGATION BAR-->
+        </div>
+        <!--END HEADER-->
+
+        <!--CONTENT-->
+        <div class="content">
+            <p class="content-title">Thêm nhà sản phẩm mới</p>
+            <form id="frmThemSanPhamMoi" method="post" action="#">
+                <p>Tên sản phẩm:</p>
+                <input type="text" class="txt" id="txtName" required style="width:300px;" /> <br/><br/>
+
+                <p>Ảnh:</p>
+                <input type="text" class="txt" id="txtImage" required style="width:300px;" /> <br/><br/>
+
+                <p>Giá:</p>
+                <input type="number" class="txt" id="txtOutPrice" required style="width:300px;" step="0.01" /><br/><br/>
+
+                <p>Mô tả:</p>
+                <input type="text" class="txt" id="txtDes" required style="width:300px;" /><br/><br/>
+
+                <button type="button" class="btn" id="btnCreateProduct" onclick="CreateProduct()" style="width:50px; height: 30px;">Thêm</button>
+            </form>
+        </div>
+        <!--END CONTENT-->
+
+        <!--FOOTER-->
+        <div class="footer">
+            <p><b>Web quản lý nhà hàng</b></p>
+            <span style="line-height:18px;">
+            <b>Người thực hiện:</b><br/>
+            GR_20<br/>
+        </span>
+        </div>
+        <!--END FOOTER-->
+
+</body>
+
+</html>

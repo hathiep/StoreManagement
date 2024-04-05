@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Quản lý sản phẩm</title>
+
+    <link type="text/css" href="files/css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="files/js/jquery_min.js"></script>
+
+</head>
+
+<body>
+    <!--HEADER-->
+    <div class="header">
+        <a href="#" title="Quản lý cửa hàng" style="outline:none;">
+            <h1>QUẢN LÝ CỬA HÀNG</h1>
+        </a>
+        <div class="logout">
+            Xin chào <b>Trần Thanh Tuấn</b> | <a href="#" title="Log out">Log out
+        </div>
+        <!--NAVIGATION BAR-->
+        <ul class="navigation">
+            <a href="Product.html" title="Quản lý sản phẩm" class="navigation-item-selected"><li>Quản lý sản phẩm</li></a>
+            <a href="#" title="Nhập hàng">
+                <li>Nhập hàng</li>
+            </a>
+            <a href="createSupplier.html" title="Thêm nhà cung cấp">
+                <li>Thêm nhà cung cấp</li>
+            </a>
+            </ul>
+            <!--NAVIGATION BAR-->
+        </div>
+        <!--END HEADER-->
+
+        <!--CONTENT-->
+        <div class="content">
+
+            <!--TIM KIEM-->
+            <form class="timkiem" name="frmTimKiem" id="frmTimKiem" method="post" style="display: flex;">
+                <input type="search" class="txt" name="txtSearch" id="txtSearch" placeholder="Nhập từ khoá cần tìm" style="width: 229px;" />
+                <button type="button" onclick="submitSearch()">Tìm kiếm</button>
+            </form>
+            <!--END TIM KIEM-->
+
+            <!--DANH SACH-->
+            <div class="danhsach">
+                <ul class="danhsach-header">
+                    <li style="width:60px;">ID</li>
+                    <li style="width:200px;">Tên sản phẩm</li>
+                    <li style="width:200px;">Ảnh</li>
+                    <li style="width:200px;">Giá</li>
+                    <li style="width:250px;">Số lượng</li>
+                    <li style="width:200px;">Mô tả</li>
+                    <li style="width:150px; float:right; text-align:right;">
+                        <a href="createProduct.html" name="btnCreateProduct" id="btnCreateProduct" title="Thêm sản phẩm mới">+ Thêm mới</a>
+                    </li>
+                </ul>
+                <div class="danhsach-chitiet">
+                    <ul class="danhsach-item">
+                        <li style="width:60px;" id="id">1</li>
+                        <li style="width:200px;" id="name">Dau an</li>
+                        <li style="width:200px;" id="image"><img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT-emUMmH-3OWgvaVN0xbp96IWQqmVbD6de7qKAn930GnC3Dgy7Vn6JCB5VjMBolEBJx2uFuEQldXCojniJdxdkXRpbuO2_JX0ocMH51SQoHixIKq3ov3N6TrLEIONz90WbeSNZCQ&usqp=CAc" style="height: 100px;"
+                            /></li>
+                        <li style="width:200px;" id="out_price">58000</li>
+                        <li style="width:250px;" id="quantity">20</li>
+                        <li style="width:200px;" id="des">Dau an simply</li>
+                        <li style="width:150px; float:right; text-align:right;">
+                            <a class="lnkSua" name="btnSua" id="btnSua" data-id="1" title="Sửa tài khoản" href="updateProduct.html">Sửa</a>
+                            <a class="lnkXoa" name="btnXoa" id="btnXoa" data-id="1" title="Xoá tài khoản">Xoá</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--END DANH SACH-->
+            <div class="danhsach-navigation">
+                <!-- <a name="btnThemDanhMuc" id="btnThemDanhMuc">
+                    < Trang cũ</a>
+                        <label id="lblTrang">1/4 trang</label>
+                        <a name="btnThemDanhMuc" id="btnThemDanhMuc">Trang kế ></a> -->
+            </div>
+        </div>
+        <!--END CONTENT-->
+
+        <!--FOOTER-->
+        <div class="footer">
+            <p><b>Web quản lý nhà hàng</b></p>
+            <span style="line-height:18px;">
+        <b>Người thực hiện:</b><br/>
+        GR_20<br/>
+    </span>
+        </div>
+        <!--END FOOTER-->
+
+</body>
+<script type="text/javascript" src="files/js/product.js"></script>
+<script type="text/javascript">
+    // Gọi hàm GetProducts() khi trang được tải
+    window.onload = GetProducts;
+</script>
+
+</html>
