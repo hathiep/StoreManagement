@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             align-items: center;
             min-height: 100vh;
         }
+        
         .login-container {
             background-color: #fff;
             padding: 20px;
@@ -23,10 +25,12 @@
             width: 90%;
             max-width: 400px;
         }
+        
         .login-container h2 {
             text-align: center;
             margin-bottom: 20px;
         }
+        
         .login-container form input {
             width: 100%;
             margin-bottom: 10px;
@@ -35,6 +39,7 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        
         .login-container form button {
             width: 100%;
             padding: 10px;
@@ -44,16 +49,19 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        
         .login-container #result {
             margin-top: 10px;
             text-align: center;
         }
+        
         .login-container #registerLink {
             text-align: center;
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="login-container">
         <h2>Đăng nhập</h2>
@@ -75,34 +83,38 @@
             event.preventDefault();
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
-            var data = { "email": email, "password": password };
+            var data = {
+                "email": email,
+                "password": password
+            };
 
             fetch('http://localhost:8080/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Handle successful login
-                document.getElementById("result").innerHTML = "Đăng nhập thành công! Chào mừng " + data.email;
-                localStorage.setItem('currentUser', JSON.stringify(data));
-                // Redirect to welcome page
-                window.location.href = 'welcome.html';
-            })
-            .catch(error => {
-                // Handle error
-                document.getElementById("result").innerHTML = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.";
-                console.error('Error:', error);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle successful login
+                    document.getElementById("result").innerHTML = "Đăng nhập thành công! Chào mừng " + data.email;
+                    localStorage.setItem('currentUser', JSON.stringify(data));
+                    // Redirect to welcome page
+                    window.location.href = 'product.html';
+                })
+                .catch(error => {
+                    // Handle error
+                    document.getElementById("result").innerHTML = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.";
+                    console.error('Error:', error);
+                });
         });
     </script>
 </body>
+
 </html>

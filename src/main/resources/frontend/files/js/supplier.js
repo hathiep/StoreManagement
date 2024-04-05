@@ -5,15 +5,11 @@ function CreateSupplier() {
     var name = document.getElementById("txtName").value;
     var address = document.getElementById("txtAddress").value;
     var phone = document.getElementById("txtPhone").value;
-    var bank = document.getElementById("txtBank").value;
-    var manager = document.getElementById("txtManager").value;
 
     var raw = {
         "name": name,
         "address": address,
-        "phone": phone,
-        "bank": bank,
-        "manager": manager
+        "phone": phone
     };
 
     var requestOptions = {
