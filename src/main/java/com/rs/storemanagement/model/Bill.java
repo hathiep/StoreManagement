@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Bill {
@@ -13,17 +14,25 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate date;
-    private int supplierId;
+    private String supplierName;
     private double totalCost;
 
-    public Bill() {
-    }
 
-    public Bill(int id, LocalDate date, int supplierId, double totalCost) {
+    public Bill(int id, LocalDate date, String supplierName, double totalCost) {
         this.id = id;
         this.date = date;
-        this.supplierId = supplierId;
+        this.supplierName = supplierName;
         this.totalCost = totalCost;
+    }
+
+    public Bill(LocalDate date, String supplierName, double totalCost) {
+        this.date = date;
+        this.supplierName = supplierName;
+        this.totalCost = totalCost;
+    }
+
+    public Bill() {
+
     }
 
     public int getId() {
@@ -42,12 +51,12 @@ public class Bill {
         this.date = date;
     }
 
-    public int getSupplierId() {
-        return supplierId;
+    public String getsupplierName() {
+        return supplierName;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setsupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public double getTotalCost() {

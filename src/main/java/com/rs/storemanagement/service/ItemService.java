@@ -11,4 +11,5 @@ public interface ItemService {
     List<Item> findAll();
     Optional<Item> findById(int id);
     void deleteById(int id);
+    void saveAll(List<Item> items);
 }

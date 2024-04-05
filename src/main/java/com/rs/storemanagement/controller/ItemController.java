@@ -48,4 +48,12 @@ public class ItemController {
         itemService.save(item);
     }
 
+    @PostMapping("/items/save_selected")
+    public void saveSelectedItems(@RequestBody List<Item> selectedItems){
+        for(Item i : selectedItems){
+            System.out.println(i.getTotalPrice());
+        }
+        itemService.saveAll(selectedItems);
+    }
+
 }
