@@ -5,47 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách hóa đơn</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th,
-        td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="files/css/ds_bill.css">
+    <link rel="stylesheet" type="text/css" href="files/css/main.css">
 </head>
 
 <body>
-    <h1>Danh sách hóa đơn</h1>
-    <form id="searchForm">
-        <label for="searchDate">Tìm kiếm theo ngày:</label>
-        <input type="date" id="searchDate" name="searchDate">
-        <button type="submit">Tìm kiếm</button>
-    </form>
-    <table id="billTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Ngày</th>
-                <th>Nhà cung cấp</th>
-                <th>Tổng chi phí</th>
-                <th></th>
-                <!-- Column for buttons -->
-            </tr>
-        </thead>
-        <tbody id="billList">
-            <!-- Dữ liệu hóa đơn sẽ được thêm vào đây bằng JavaScript -->
-        </tbody>
-    </table>
+    <!--HEADER-->
+    <div class="header">
+        <a href="#" title="Quản lý cửa hàng" style="outline:none;">
+            <h1>QUẢN LÝ CỬA HÀNG</h1>
+        </a>
+        <div class="logout">
+            Xin chào <b><div id="user-info"></div></b> | <a href="#" title="Log out">Log out</a>
+        </div>
+        <!--NAVIGATION BAR-->
+        <ul class="navigation">
+            <a href="Product.html" title="Quản lý sản phẩm">
+                <li>Quản lý sản phẩm</li>
+            </a>
+            <a href="bill.html" title="Nhập hàng" class="navigation-item-selected">
+                <li>Quản lý hóa đơn nhập</li>
+            </a>
+            <a href="createSupplier.html" title="Thêm nhà cung cấp">
+                <li>Thêm nhà cung cấp</li>
+            </a>
+        </ul>
+        <!--NAVIGATION BAR-->
+    </div>
+    <!--END HEADER-->
+    <div class="container">
+        <h1 style="font-size: 25px; font-weight:bold; color:darkslategrey">Danh sách hóa đơn</h1><br>
+        <form id="searchForm">
+            <label for="searchDate">Tìm kiếm theo ngày:</label>
+            <input type="date" id="searchDate" name="searchDate">
+            <button type="submit">Tìm kiếm</button>
+        </form><br>
+        <table id="billTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ngày</th>
+                    <th>Nhà cung cấp</th>
+                    <th>Tổng chi phí</th>
+                    <th style="width:150px;">
+                        <a href="createBill.html" name="btnCreateBill" id="btnCreate" title="Thêm bill mới">+ Thêm mới</a>
+                    </th>
+
+                    <!-- Column for buttons -->
+                </tr>
+            </thead>
+            <tbody id="billList">
+                <!-- Dữ liệu hóa đơn sẽ được thêm vào đây bằng JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    <!--FOOTER-->
+    <div class="footer">
+        <p><b>Web quản lý nhà hàng</b></p>
+        <span style="line-height:18px;">
+      <b>Người thực hiện:</b><br/>
+      GR_20<br/>
+  </span>
+    </div>
+    <!--END FOOTER-->
 
     <script>
         // Function to fetch data from API and update table
@@ -107,8 +129,8 @@
 </body>
 
 </html>
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
+<!-- <!DOCTYPE html>-->
+<!-- <html lang="en"> -->
 
 <!--<head>-->
 <!--    <meta charset="UTF-8">-->
@@ -176,7 +198,7 @@
 <!--      GR_20<br/>-->
 <!--  </span>-->
 <!--    </div>-->
-<!--    &lt;!&ndash;END FOOTER&ndash;&gt;-->
+<!--    &lt;!&ndash;END FOOTER&ndash;&gt;
 
 
 <!--    <script>-->
