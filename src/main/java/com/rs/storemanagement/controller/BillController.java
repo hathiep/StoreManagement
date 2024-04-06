@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -77,21 +78,32 @@ public class BillController {
 
         int billId = data.getItemsToSave().get(0).getBillId();
         LocalDate now = billService.findById(billId).get().getDate();
-
+        List<Integer> listOldQuantity = new ArrayList<>();
         int sum = 0;
-        for(Item i : data.getItemsToSave()){
-            sum += i.getTotalPrice();
+        List<Item> oldItems = itemService.findByBillId(billId);
+        for(int i = 0; i <data.getItemsToSave().size(); i++){
+            sum += data.getItemsToSave().get(i).getTotalPrice();
+            listOldQuantity.add(oldItems.get(i).getQuantity());
+
         }
         Bill bill = new Bill(billId,now, data.getSupplierName(), sum);
+
         Bill savedBill = billService.save(bill);
         if(savedBill != null) {
-            for(Item i : data.getItemsToSave()){
-                Product product = (Product) productService.findByName(i.getProductName());
-                product.setQuantity(product.getQuantity()+i.getQuantity());
+            for(int i = 0; i < data.getItemsToSave().size(); i++){
+
+                Product product = (Product) productService.findByName(data.getItemsToSave().get(i).getProductName());
+                product.setQuantity(product.getQuantity()-listOldQuantity.get(i)+data.getItemsToSave().get(i).getQuantity());
                 productService.save(product);
             }
             itemService.saveAll(data.getItemsToSave());
         }
+    }
+
+    @DeleteMapping("/bill/delete")
+    public void deleteBill(@Param("billId") Integer billId){
+        itemService.deleteByBillId(billId);
+        billService.deleteById(billId);
     }
 
 }
