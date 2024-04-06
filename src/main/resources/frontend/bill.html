@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,96 +10,102 @@
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+        
+        th,
+        td {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+        
         th {
             background-color: #f2f2f2;
         }
     </style>
 </head>
+
 <body>
-<h1>Danh sách hóa đơn</h1>
-<form id="searchForm">
-    <label for="searchDate">Tìm kiếm theo ngày:</label>
-    <input type="date" id="searchDate" name="searchDate">
-    <button type="submit">Tìm kiếm</button>
-</form>
-<table id="billTable">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Ngày</th>
-        <th>Nhà cung cấp</th>
-        <th>Tổng chi phí</th>
-        <th></th> <!-- Column for buttons -->
-    </tr>
-    </thead>
-    <tbody id="billList">
-    <!-- Dữ liệu hóa đơn sẽ được thêm vào đây bằng JavaScript -->
-    </tbody>
-</table>
+    <h1>Danh sách hóa đơn</h1>
+    <form id="searchForm">
+        <label for="searchDate">Tìm kiếm theo ngày:</label>
+        <input type="date" id="searchDate" name="searchDate">
+        <button type="submit">Tìm kiếm</button>
+    </form>
+    <table id="billTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ngày</th>
+                <th>Nhà cung cấp</th>
+                <th>Tổng chi phí</th>
+                <th></th>
+                <!-- Column for buttons -->
+            </tr>
+        </thead>
+        <tbody id="billList">
+            <!-- Dữ liệu hóa đơn sẽ được thêm vào đây bằng JavaScript -->
+        </tbody>
+    </table>
 
-<script>
-    // Function to fetch data from API and update table
-    function fetchData(date = null) {
-        let url = 'http://localhost:8080/api/bills';
-        if (date) {
-            url = 'http://localhost:8080/api/bill/search?date=' + date;
-        }
+    <script>
+        // Function to fetch data from API and update table
+        function fetchData(date = null) {
+            let url = 'http://localhost:8080/api/bills';
+            if (date) {
+                url = 'http://localhost:8080/api/bill/search?date=' + date;
+            }
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const billList = document.getElementById('billList');
-                // Clear previous data
-                billList.innerHTML = '';
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const billList = document.getElementById('billList');
+                    // Clear previous data
+                    billList.innerHTML = '';
 
-                // Loop through the data and add rows to the table
-                data.forEach(bill => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
+                    // Loop through the data and add rows to the table
+                    data.forEach(bill => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
                             <td>${bill.id}</td>
                             <td>${bill.date}</td>
                             <td>${bill.supplierName || 'Không có'}</td>
                             <td>${bill.totalCost}</td>
                             <td>
-                                <a class="lnkSua" name="btnSua${bill.id}" data-id="${bill.id}" title="Sửa" href="update_bill.html?billId=${bill.id}">Sửa</a>
+                                <a class="lnkSua" name="btnSua${bill.id}" data-id="${bill.id}" title="Sửa" href="update_bill.html?billId=${bill.id}&supplierName=${bill.supplierName}">Sửa</a>
                                 <a class="lnkXoa" name="btnXoa${bill.id}" data-id="${bill.id}" title="Xoá" onclick="DeleteProduct(${bill.id})">Xoá</a>
                             </td>
 
                         `;
-                    billList.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error fetching bills:', error));
-    }
+                        billList.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching bills:', error));
+        }
 
-    // Call fetchData function when the page loads
-    window.onload = () => fetchData();
+        // Call fetchData function when the page loads
+        window.onload = () => fetchData();
 
-    // Search form submission event
-    document.getElementById('searchForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const searchDate = document.getElementById('searchDate').value;
-        fetchData(searchDate);
-    });
+        // Search form submission event
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const searchDate = document.getElementById('searchDate').value;
+            fetchData(searchDate);
+        });
 
-    // Function to handle edit button click
-    function editBill(id) {
-        // Implement edit functionality here
-        console.log('Edit bill with ID:', id);
-    }
+        // Function to handle edit button click
+        function editBill(id) {
+            // Implement edit functionality here
+            console.log('Edit bill with ID:', id);
+        }
 
-    // Function to handle delete button click
-    function deleteBill(id) {
-        // Implement delete functionality here
-        console.log('Delete bill with ID:', id);
-    }
-</script>
+        // Function to handle delete button click
+        function deleteBill(id) {
+            // Implement delete functionality here
+            console.log('Delete bill with ID:', id);
+        }
+    </script>
 </body>
+
 </html>
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->

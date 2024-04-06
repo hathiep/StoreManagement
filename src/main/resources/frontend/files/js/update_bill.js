@@ -96,7 +96,7 @@ function saveChanges() {
     var xhr = new XMLHttpRequest();
     xhr.open("PUT", "http://localhost:8080/api/bill/update", true);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 alert('Selected items have been saved successfully.');
@@ -108,10 +108,17 @@ function saveChanges() {
     xhr.send(JSON.stringify(dataToSend));
 }
 
-function getAllItem(id){
+
+
+
+
+function getAllItem(id, supplierName) {
+    document.getElementById('searchInputSupplier').value = supplierName;
+    document.getElementById('supplierInfo').textContent = supplierName;
     fetch("http://localhost:8080/api/bill/get_item?billId=" + id)
         .then(response => response.json())
         .then(items => {
+
             var itemTableBody = document.getElementById("itemTableBody");
             items.forEach(item => {
                 var row = "<tr>";
@@ -126,6 +133,8 @@ function getAllItem(id){
                 row += "<td><button onclick='selectItem(" + item.id + ", \"" + item.productName + "\", " + item.inPrice + ", " + item.quantity + ")'>Select</button></td>";
                 row += "</tr>";
                 itemTableBody.innerHTML += row;
+
+                document.getElementById('supplierInfo').innerHTML = item.supplierName;
             });
         })
         .catch(error => console.error('Error fetching items:', error));
