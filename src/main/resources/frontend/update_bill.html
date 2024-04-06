@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+    <link type="text/css" href="files/css/bill.css" rel="stylesheet" />
+    <link type="text/css" href="files/css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+<!--HEADER-->
+<div class="header">
+    <a href="#" title="Quản lý nhà cung cấp" style="outline:none;">
+        <h1>THÊM HÓA ĐƠN</h1>
+    </a>
+    <div class="logout">
+        Xin chào <b>Trần Thanh Tuấn</b> | <a href="#" title="Log out">Log out</a>
+    </div>
+    <!--NAVIGATION BAR-->
+    <ul class="navigation">
+        <a href="product.html" title="Quản lý sản phẩm">
+            <li>Quản lý sản phẩm</li>
+        </a>
+        <a href="createBill.html" title="Nhập hàng" class="navigation-item-selected">
+            <li>Quản lý hóa đơn nhập</li>
+        </a>
+        <a href="createSupplier.html" title="Thêm nhà cung cấp">
+            <li>Thêm nhà cung cấp</li>
+        </a>
+    </ul>
+    <!--NAVIGATION BAR-->
+</div>
+
+<div class="dropdown">
+    <input class="timkiem" type="text" id="searchInputSupplier" placeholder="Search supplier...">
+    <div id="supplierDropdown" class="dropdown-content"></div>
+</div>
+<div class="show-supplier">
+    <p>Nhà cung cấp : </p>
+    <p id="supplierInfo"></p>
+</div>
+
+
+<p class="select-product">Selected Products</p>
+<table id="itemTableBody">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody id="selectedProductTableBody">
+    <!-- Selected product rows will be displayed here -->
+    </tbody>
+</table>
+
+<button class="save" onclick="saveChanges()">Save</button>
+
+<!--FOOTER-->
+<div class="footer">
+    <p><b>Web quản lý nhà hàng</b></p>
+    <span style="line-height:18px;">
+      <b>Người thực hiện:</b><br/>
+      GR_20<br/>
+  </span>
+</div>
+
+<script src="files/js/update_bill.js"></script>
+
+<script>
+    // Phân tích chuỗi URL để lấy tham số 'billId'
+    var url = new URL(window.location.href);
+    var id = url.searchParams.get("billId");
+
+    // Gọi hàm getAllItem() khi trang được tải
+    window.onload = function() {
+        getAllItem(id);
+        getAllSupplier();
+    };
+</script>
+<!--END FOOTER-->
+</body>
+
+</html>

@@ -66,5 +66,32 @@ public class BillController {
         return billService.search(newdate);
     }
 
+    @GetMapping("/bill/get_item")
+    public List<Item> getItemByBillId(@Param("billId") Integer billId){
+        return itemService.findByBillId(billId);
+    }
+
+    @PutMapping("/bill/update")
+    public void updateBill(@RequestBody DTO data){
+        System.out.println(data.getSupplierName());
+
+        int billId = data.getItemsToSave().get(0).getBillId();
+        LocalDate now = billService.findById(billId).get().getDate();
+
+        int sum = 0;
+        for(Item i : data.getItemsToSave()){
+            sum += i.getTotalPrice();
+        }
+        Bill bill = new Bill(billId,now, data.getSupplierName(), sum);
+        Bill savedBill = billService.save(bill);
+        if(savedBill != null) {
+            for(Item i : data.getItemsToSave()){
+                Product product = (Product) productService.findByName(i.getProductName());
+                product.setQuantity(product.getQuantity()+i.getQuantity());
+                productService.save(product);
+            }
+            itemService.saveAll(data.getItemsToSave());
+        }
+    }
 
 }
