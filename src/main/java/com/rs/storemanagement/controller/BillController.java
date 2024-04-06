@@ -58,8 +58,13 @@ public class BillController {
         return billService.findAll();
     }
 
-    @GetMapping("bill/search")
-    public List<Bill> search(@Param("date") LocalDate date){
-        return billService.search(date);
+    @GetMapping("/bill/search")
+    public List<Bill> search(@Param("date") String date){
+        date = date.replaceAll("/","-");
+
+        LocalDate newdate = LocalDate.parse(date);
+        return billService.search(newdate);
     }
+
+
 }

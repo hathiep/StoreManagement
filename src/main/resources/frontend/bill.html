@@ -1,111 +1,101 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Quản lý hóa đơn</title>
-    <link type="text/css" href="files/css/main.css" rel="stylesheet" />
-    <script type="text/javascript" src="files/js/jquery_min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách hóa đơn</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
-
 <body>
-<!-- HEADER -->
-<div class="header">
-    <a href="#" title="Quản lý cửa hàng" style="outline:none;">
-        <h1>QUẢN LÝ CỬA HÀNG</h1>
-    </a>
-    <div class="logout">
-        Xin chào <b><div id="user-info"></div></b> | <a href="#" title="Đăng xuất">Đăng xuất</a>
-    </div>
-    <!-- NAVIGATION BAR -->
-    <ul class="navigation">
-        <a href="Product.html" title="Quản lý sản phẩm">
-            <li>Quản lý sản phẩm</li>
-        </a>
-        <a href="#" title="Nhập hàng">
-            <li>Nhập hàng</li>
-        </a>
-        <a href="createSupplier.html" title="Thêm nhà cung cấp">
-            <li>Thêm nhà cung cấp</li>
-        </a>
-        <a href="bill.html" title="Quản lý hóa đơn" class="navigation-item-selected">
-            <li>Quản lý hóa đơn</li>
-        </a>
-    </ul>
-    <!-- END NAVIGATION BAR -->
-</div>
-<!-- END HEADER -->
+<h1>Danh sách hóa đơn</h1>
+<form id="searchForm">
+    <label for="searchDate">Tìm kiếm theo ngày:</label>
+    <input type="date" id="searchDate" name="searchDate">
+    <button type="submit">Tìm kiếm</button>
+</form>
+<table id="billTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Ngày</th>
+        <th>Nhà cung cấp</th>
+        <th>Tổng chi phí</th>
+        <th></th> <!-- Column for buttons -->
+    </tr>
+    </thead>
+    <tbody id="billList">
+    <!-- Dữ liệu hóa đơn sẽ được thêm vào đây bằng JavaScript -->
+    </tbody>
+</table>
 
-<!-- CONTENT -->
-<div class="content">
-    <!-- BILL LIST -->
-    <div class="danhsach">
-        <ul class="danhsach-header">
-            <li style="width: 100px;">ID</li>
-            <li style="width: 200px;">Ngày</li>
-            <li style="width: 150px;">Tổng tiền</li>
-        </ul>
-        <div class="danhsach-chitiet" id="bill-list">
-            <!-- Bill items will be dynamically loaded here -->
-        </div>
-    </div>
-    <!-- END BILL LIST -->
-</div>
-<!-- END CONTENT -->
+<script>
+    // Function to fetch data from API and update table
+    function fetchData(date = null) {
+        let url = 'http://localhost:8080/api/bills';
+        if (date) {
+            url = 'http://localhost:8080/api/bill/search?date=' + date;
+        }
 
-<!-- FOOTER -->
-<div class="footer">
-    <p><b>Web quản lý nhà hàng</b></p>
-    <span style="line-height:18px;">
-            <b>Người thực hiện:</b><br/>
-            GR_20<br/>
-        </span>
-</div>
-<!-- END FOOTER -->
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const billList = document.getElementById('billList');
+                // Clear previous data
+                billList.innerHTML = '';
 
-<!-- JavaScript for fetching and displaying bill data -->
-<script type="text/javascript">
-    // Call function to get bills when the page is loaded
-    $(document).ready(function() {
-        $.ajax({
-            url: "/api/bills",
-            type: "GET",
-            success: function(response) {
-                displayBills(response);
-            },
-            error: function(xhr, status, error) {
-                console.error("Error:", error);
-            }
-        });
+                // Loop through the data and add rows to the table
+                data.forEach(bill => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                            <td>${bill.id}</td>
+                            <td>${bill.date}</td>
+                            <td>${bill.supplierName || 'Không có'}</td>
+                            <td>${bill.totalCost}</td>
+                            <td>
+                                <button onclick="editBill(${bill.id})">Sửa</button>
+                                <button onclick="deleteBill(${bill.id})">Xóa</button>
+                            </td>
+                        `;
+                    billList.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching bills:', error));
+    }
+
+    // Call fetchData function when the page loads
+    window.onload = () => fetchData();
+
+    // Search form submission event
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const searchDate = document.getElementById('searchDate').value;
+        fetchData(searchDate);
     });
 
-    function displayBills(bills) {
-        var billListContainer = $("#bill-list");
+    // Function to handle edit button click
+    function editBill(id) {
+        // Implement edit functionality here
+        console.log('Edit bill with ID:', id);
+    }
 
-        bills.forEach(function(bill) {
-            var billItem = $("<ul class='danhsach-item'>").html(`
-                    <li style="width:100px;">${bill.id}</li>
-                    <li style="width:200px;">${bill.date}</li>
-                    <li style="width:150px;">${bill.total}</li>
-                `);
-            billListContainer.append(billItem);
-        });
+    // Function to handle delete button click
+    function deleteBill(id) {
+        // Implement delete functionality here
+        console.log('Delete bill with ID:', id);
     }
 </script>
-
-<!-- JavaScript for displaying user info -->
-<script>
-    // Retrieve user data from localStorage
-    var userData = JSON.parse(localStorage.getItem('currentUser'));
-
-    // Display user info
-    if (userData) {
-        $("#user-info").html(`<p>Tên: ${userData.name}</p>`);
-    } else {
-        $("#user-info").html("<p>Không có thông tin người dùng.</p>");
-    }
-</script>
-
 </body>
-
 </html>
