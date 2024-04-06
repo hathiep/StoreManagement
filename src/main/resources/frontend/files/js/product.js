@@ -25,16 +25,20 @@ function CreateProduct() {
     };
 
     fetch('http://localhost:8080/api/product/create', requestOptions)
-        .then((response) => response.text())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Có lỗi xảy ra khi tạo sản phẩm.');
+            }
+            return response.text();
+        })
         .then(data => {
-            // Xử lý dữ liệu trả về nếu cần
             console.log(data);
             alert('Thêm sản phẩm thành công!');
+            window.location.href = 'product.html';
         })
         .catch(error => {
-            // Xử lý lỗi nếu có
             console.error('There has been a problem with your fetch operation:', error);
-            alert('Đã xảy ra lỗi, vui lòng thử lại sau!');
+            alert('Sản phẩm đã có trong hệ thống! Vui lòng chọn tên khác!');
         });
 }
 

@@ -3,9 +3,12 @@ package com.rs.storemanagement.controller;
 import com.rs.storemanagement.model.Bill;
 import com.rs.storemanagement.model.DTO;
 import com.rs.storemanagement.model.Item;
+import com.rs.storemanagement.model.Product;
 import com.rs.storemanagement.service.BillService;
 import com.rs.storemanagement.service.ItemService;
+import com.rs.storemanagement.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -23,11 +26,13 @@ public class BillController {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private ProductService productService;
+
     @PostMapping("/bill/save_selected")
     public void saveSelectedItems(@RequestBody DTO data){
         System.out.println(data.getSupplierName());
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDate now = LocalDate.now();
 
         int sum = 0;
@@ -40,9 +45,21 @@ public class BillController {
             for(Item i : data.getItemsToSave()){
                 sum += i.getTotalPrice();
                 i.setBillId(savedBill.getId());
+                Product product = (Product) productService.findByName(i.getProductName());
+                product.setQuantity(product.getQuantity()+i.getQuantity());
+                productService.save(product);
             }
             itemService.saveAll(data.getItemsToSave());
         }
     }
 
+    @GetMapping("/bills")
+    public List<Bill> getAll(){
+        return billService.findAll();
+    }
+
+    @GetMapping("bill/search")
+    public List<Bill> search(@Param("date") LocalDate date){
+        return billService.search(date);
+    }
 }
