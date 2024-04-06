@@ -131,7 +131,7 @@ function getAllItem(id, supplierName) {
 
                 row += "<td><input type='number' id='quantity_" + item.id + "' value='" + quantity + "' placeholder='Quantity'></td>";
                 row += "<td><input type='number' id='price_" + item.id + "' value='" + inprice + "' placeholder='InPrice'></td>";
-                row += "<td><button onclick='selectItem(" + item.id + ", \"" + item.productName + "\", " + item.inPrice + ", " + item.quantity + ")'>Select</button></td>";
+
                 row += "</tr>";
                 itemTableBody.innerHTML += row;
 

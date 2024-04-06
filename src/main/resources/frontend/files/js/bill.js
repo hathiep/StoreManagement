@@ -168,3 +168,34 @@ fetch("http://localhost:8080/api/products")
         });
     })
     .catch(error => console.error('Error fetching products:', error));
+
+function DeleteBill(id) {
+    // Hỏi người dùng xác nhận trước khi xóa
+    const confirmation = confirm("Bạn có muốn xóa Bill có ID " + id + " không?");
+
+    if (!confirmation) {
+        console.log("Hủy bỏ xóa Bill.");
+        return; // Không thực hiện xóa nếu người dùng hủy bỏ
+    }
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("id", id);
+
+    const requestOptions = {
+        method: "DELETE",
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: "follow"
+    };
+
+    fetch('http://localhost:8080/api/bill/delete?billId=' + id, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+            alert("Bill có ID " + id + " đã được xóa thành công.");
+            location.reload();
+        })
+        .catch((error) => console.error(error));
+}
