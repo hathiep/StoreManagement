@@ -115,6 +115,7 @@ function saveChanges() {
 function getAllItem(id, supplierName) {
     document.getElementById('searchInputSupplier').value = supplierName;
     document.getElementById('supplierInfo').textContent = supplierName;
+
     fetch("http://localhost:8080/api/bill/get_item?billId=" + id)
         .then(response => response.json())
         .then(items => {
@@ -134,7 +135,6 @@ function getAllItem(id, supplierName) {
                 row += "</tr>";
                 itemTableBody.innerHTML += row;
 
-                document.getElementById('supplierInfo').innerHTML = item.supplierName;
             });
         })
         .catch(error => console.error('Error fetching items:', error));
