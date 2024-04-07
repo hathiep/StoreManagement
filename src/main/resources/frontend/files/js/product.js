@@ -8,6 +8,15 @@ function CreateProduct() {
     // var quantity = document.getElementById("txtQuantity").value;
     var des = document.getElementById("txtDes").value;
 
+    if(name == "" || image == "" || outPrice == ""){
+        alert('Vui lòng điền đầy đủ thông tin');
+        return; // Dừng hàm nếu có lỗi
+    }
+    if (outPrice <= 0) {
+        alert('Giá sản phẩm không hợp lệ! Vui lòng nhập số dương.');
+        return; // Dừng hàm nếu có lỗi
+    }
+
     var raw = {
         "name": name,
         "image": image,
@@ -56,11 +65,11 @@ function GetProducts() {
                 li.classList.add('danhsach-item');
                 li.innerHTML = `
                     <li style="width:60px;">${item.id}</li>
-                    <li style="width:200px;">${item.name}</li>
+                    <li style="width:300px;">${item.name}</li>
                     <li style="width:200px;"><img src="${item.image}" style="height: 100px;"</li>
-                    <li style="width:200px;">${item.outPrice}</li>
-                    <li style="width:250px;">${item.quantity}</li>
-                    <li style="width:200px;">${item.des}</li>
+                    <li style="width:200px; text-align: right;">${item.outPrice} đ</li>
+                    <li style="width:100px; text-align: right;">${item.quantity}</li>
+                    <li style="width:200px; margin-left: 2%">${item.des}</li>
                     <li style="width:150px; float:right; text-align:right;">
                         <a class="lnkSua" name="btnSua${item.id}" data-id="${item.id}" title="Sửa" href="updateProduct.html?id=${item.id}">Sửa</a>
                         <a class="lnkXoa" name="btnXoa${item.id}" data-id="${item.id}" title="Xoá" onclick="DeleteProduct(${item.id})">Xoá</a>
@@ -97,6 +106,15 @@ function UpdateProduct() {
     var quantity = document.getElementById("txtQuantity").textContent;
     var des = document.getElementById("txtDes").value;
 
+    if(name == "" || image == "" || outPrice == ""){
+        alert('Vui lòng điền đầy đủ thông tin');
+        return; // Dừng hàm nếu có lỗi
+    }
+    if (outPrice <= 0) {
+        alert('Giá sản phẩm không hợp lệ! Vui lòng nhập số dương.');
+        return; // Dừng hàm nếu có lỗi
+    }
+
     var raw = {
         "id": id,
         "name": name,
@@ -115,7 +133,12 @@ function UpdateProduct() {
     };
 
     fetch('http://localhost:8080/api/product/update', requestOptions)
-        .then((response) => response.text())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Có lỗi xảy ra khi tạo sản phẩm.');
+            }
+            return response.text();
+        })
         .then(result => {
             alert('Sửa sản phẩm thành công!');
             location.reload();
@@ -123,7 +146,7 @@ function UpdateProduct() {
         .catch(error => {
             // Xử lý lỗi nếu có
             console.error('There has been a problem with your fetch operation:', error);
-            alert('Đã xảy ra lỗi, vui lòng thử lại sau!');
+            alert('Sản phẩm đã có trong hệ thống! Vui lòng chọn tên khác!');
         });
 }
 
@@ -181,11 +204,11 @@ function SearchProducts(keyword) {
                 li.classList.add('danhsach-item');
                 li.innerHTML = `
                     <li style="width:60px;">${item.id}</li>
-                    <li style="width:200px;">${item.name}</li>
+                    <li style="width:300px;">${item.name}</li>
                     <li style="width:200px;"><img src="${item.image}" style="height: 100px;"</li>
-                    <li style="width:200px;">${item.outPrice}</li>
-                    <li style="width:250px;">${item.quantity}</li>
-                    <li style="width:200px;">${item.des}</li>
+                    <li style="width:200px; text-align: right;">${item.outPrice} đ</li>
+                    <li style="width:100px; text-align: right;">${item.quantity}</li>
+                    <li style="width:200px; margin-left: 2%">${item.des}</li>
                     <li style="width:150px; float:right; text-align:right;">
                         <a class="lnkSua" name="btnSua${item.id}" data-id="${item.id}" title="Sửa" href="updateProduct.html?id=${item.id}">Sửa</a>
                         <a class="lnkXoa" name="btnXoa${item.id}" data-id="${item.id}" title="Xoá" onclick="DeleteProduct(${item.id})">Xoá</a>

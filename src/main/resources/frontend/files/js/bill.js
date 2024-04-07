@@ -92,18 +92,37 @@ function removeProduct(id) {
 
 function saveSelectedItems() {
     var supplierName = document.getElementById("supplierInfo").textContent;
+    if (supplierName == "") {
+        alert('Vui lòng chọn nhà cung cấp!');
+        return;
+    }
     var itemsToSave = [];
+    var ok = 0;
     selectedProducts.forEach(product => {
         var quantity = document.getElementById("quantity_" + product.id).value;
         var price = document.getElementById("price_" + product.id).value;
+        if(quantity == ""  || price == ""){
+            alert('Vui lòng nhập đầy đủ thông tin sản phẩm!');
+            ok = 1;
+            return;
+        }
+        if(quantity <=0  || price <= 0){
+            alert('Vui lòng nhập số dương!');
+            ok = 1;
+            return;
+        }
         itemsToSave.push({
-            billId: 1, // Replace with actual bill ID
             productName: product.name,
             inPrice: parseFloat(price),
             quantity: parseInt(quantity),
             totalPrice: parseFloat(price) * parseInt(quantity)
         });
     });
+    if(ok == 1) return;
+    if(itemsToSave.length == 0){
+        alert('Vui lòng chọn sản phẩm!');
+        return;
+    }
     var dataToSend = {
         itemsToSave: itemsToSave,
         supplierName: supplierName
@@ -119,6 +138,7 @@ function saveSelectedItems() {
         .then(response => {
             if (response.ok) {
                 alert('Selected items have been saved successfully.');
+                window.location.href = "bill.html"
             } else {
                 alert('Failed to save selected items.');
             }
@@ -140,8 +160,8 @@ function searchProducts() {
                 row += "<td>" + product.name + "</td>";
                 row += "<td><img src='" + product.image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
                 row += "<td>" + product.des + "</td>";
-                row += "<td>" + product.outPrice + "</td>";
-                row += "<td>" + product.quantity + "</td>";
+                row += "<td style='text-align: right;'>" + product.outPrice + " đ" + "</td>";
+                row += "<td style='text-align: right;'>" + product.quantity + "</td>";
                 row += "<td><button onclick='selectProduct(" + product.id + ", \"" + product.name + "\", \"" + product.image + "\")'>Select</button></td>";
                 row += "</tr>";
                 productTableBody.innerHTML += row;
@@ -160,8 +180,8 @@ fetch("http://localhost:8080/api/products")
             row += "<td>" + product.name + "</td>";
             row += "<td><img src='" + product.image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
             row += "<td>" + product.des + "</td>";
-            row += "<td>" + product.outPrice + "</td>";
-            row += "<td>" + product.quantity + "</td>";
+            row += "<td style='text-align: right;'>" + product.outPrice + " đ" +"</td>";
+            row += "<td style='text-align: right;'>" + product.quantity + "</td>";
             row += "<td><button onclick='selectProduct(" + product.id + ", \"" + product.name + "\", \"" + product.image + "\")'>Select</button></td>";
             row += "</tr>";
             productTableBody.innerHTML += row;

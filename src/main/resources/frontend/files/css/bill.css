@@ -55,9 +55,9 @@ th {
 
 .show-supplier {
     color: #173c0b;
-    margin-left: 40%;
+    margin-left: 5%;
     display: flex;
-    font-size: 25px;
+    font-size: 16px;
 }
 
 
@@ -84,7 +84,7 @@ button {
 }
 
 .dropdown {
-    margin-left: 70%;
+    margin-left: 1%;
 }
 
 .dropdown-content {
@@ -103,7 +103,7 @@ button {
 }
 
 input[type="text"] {
-    background-color: rgb(196, 212, 175);
+    background-color: #cccccc;
     color: #FFFFFF;
     border: none;
     padding: 10px;

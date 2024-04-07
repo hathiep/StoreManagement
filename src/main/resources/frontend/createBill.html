@@ -15,11 +15,9 @@
 <body>
     <!--HEADER-->
     <div class="header">
-        <a href="#" title="Quản lý nhà cung cấp" style="outline:none;">
-            <h1>THÊM HÓA ĐƠN</h1>
-        </a>
-        <div class="logout">
-            Xin chào <b>Trần Thanh Tuấn</b> | <a href="#" title="Log out">Log out</a>
+        <h1>QUẢN LÝ CỬA HÀNG</h1>
+        <div class="logout" style="display: flex">
+            <div style="margin-top: 15px">Xin chào :</div> &nbsp; &nbsp; <b><div id="user-info"></div></b> &nbsp; &nbsp;<div style="margin-top: 14px">| <a onclick="Logout()" title="Log out">Log out</a></div>
         </div>
         <!--NAVIGATION BAR-->
         <ul class="navigation">
@@ -36,20 +34,30 @@
         <!--NAVIGATION BAR-->
     </div>
     <!--END HEADER-->
-    <div class="dropdown">
-        <input class="timkiem" type="text" id="searchInputSupplier" placeholder="Search supplier...">
-        <div id="supplierDropdown" class="dropdown-content"></div>
+    <div style="margin-left: 5%;">
+        <p  class="content-title">Sửa sản phẩm</p>
+        <div style="display: flex;">
+            <p >Chọn nhà cung cấp</p>
+            <div class="dropdown">
+                <input class="timkiem" type="text" id="searchInputSupplier" placeholder="Nhập tên nhà cung cấp">
+                <div id="supplierDropdown" class="dropdown-content"></div>
+            </div>
+            <div style="margin-left: 3%;" class="show-supplier">
+                <p>Nhà cung cấp : &nbsp;</p>
+                <p id="supplierInfo"></p>
+            </div>
+        </div>
     </div>
-    <div class="show-supplier">
-        <p>Nhà cung cấp : </p>
-        <p id="supplierInfo"></p>
+    <div style="display: flex; margin-left: 5%;">
+        <p >Tìm sản phẩm</p>
+        <div class="search-products" style="display: flex; margin-left: 3.3%;">
+            <input style="width: 310px" type="text" id="searchInput" placeholder="Nhập tên sản phẩm">
+            <button style="margin-left: 3%; margin-top: 10px;" onclick="searchProducts()">Search</button>
+        </div>
     </div>
-    <div class="search-products">
-        <input type="text" id="searchInput" placeholder="Search product">
-        <button onclick="searchProducts()">Search</button>
-    </div>
-    <table id="productTable">
-        <thead>
+    <div style="height: 300px; overflow:auto; position: relative;">
+        <table id="productTable">
+            <thead style="position: sticky; top: 0;">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -59,11 +67,12 @@
                 <th>Quantity</th>
                 <th>Select</th>
             </tr>
-        </thead>
-        <tbody id="productTableBody">
+            </thead>
+            <tbody id="productTableBody">
             <!-- Product rows will be displayed here -->
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     <p class="select-product">Selected Products</p>
     <table id="selectedProductTable">
@@ -94,5 +103,5 @@
     </div>
     <!--END FOOTER-->
 </body>
-
+<script src="files/js/login.js"></script>
 </html>

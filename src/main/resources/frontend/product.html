@@ -13,11 +13,9 @@
 <body>
     <!--HEADER-->
     <div class="header">
-        <a href="#" title="Quản lý cửa hàng" style="outline:none;">
-            <h1>QUẢN LÝ CỬA HÀNG</h1>
-        </a>
-        <div class="logout">
-            Xin chào <b><div id="user-info"></div></b> | <a href="#" title="Log out">Log out</a>
+        <h1>QUẢN LÝ CỬA HÀNG</h1>
+        <div class="logout" style="display: flex">
+            <div style="margin-top: 15px">Xin chào :</div> &nbsp; &nbsp; <b><div id="user-info"></div></b> &nbsp; &nbsp;<div style="margin-top: 14px">| <a onclick="Logout()" title="Log out">Log out</a></div>
         </div>
         <!--NAVIGATION BAR-->
         <ul class="navigation">
@@ -49,11 +47,11 @@
         <div class="danhsach">
             <ul class="danhsach-header">
                 <li style="width:60px;">ID</li>
-                <li style="width:200px;">Tên sản phẩm</li>
+                <li style="width:300px;">Tên sản phẩm</li>
                 <li style="width:200px;">Ảnh</li>
-                <li style="width:200px;">Giá</li>
-                <li style="width:250px;">Số lượng</li>
-                <li style="width:200px;">Mô tả</li>
+                <li style="width:200px; text-align: right;">Giá</li>
+                <li style="width:100px; text-align: right;">Số lượng</li>
+                <li style="width:200px; margin-left: 2%;">Mô tả</li>
                 <li style="width:150px; float:right; text-align:right;">
                     <a href="createProduct.html" name="btnCreateProduct" id="btnCreateProduct" title="Thêm sản phẩm mới">+ Thêm mới</a>
                 </li>
@@ -98,21 +96,8 @@
 </body>
 <script type="text/javascript" src="files/js/product.js"></script>
 <script type="text/javascript">
-    // Gọi hàm GetProducts() khi trang được tải
     window.onload = GetProducts;
 </script>
-<script>
-    // Retrieve user data from localStorage
-    var userData = JSON.parse(localStorage.getItem('currentUser'));
-
-    // Display user info
-    if (userData) {
-        document.getElementById("user-info").innerHTML = `
-                <p>Tên: ${userData.name}</p>
-            `;
-    } else {
-        document.getElementById("user-info").innerHTML = "<p>Không có thông tin người dùng.</p>";
-    }
-</script>
+<script src="files/js/login.js"></script>
 
 </html>

@@ -13,11 +13,9 @@
 <body>
     <!--HEADER-->
     <div class="header">
-        <a href="#" title="Quản lý nhà cung cấp" style="outline:none;">
-            <h1>THÊM HÓA ĐƠN</h1>
-        </a>
-        <div class="logout">
-            Xin chào <b>Trần Thanh Tuấn</b> | <a href="#" title="Log out">Log out</a>
+        <h1>QUẢN LÝ CỬA HÀNG</h1>
+        <div class="logout" style="display: flex">
+            <div style="margin-top: 15px">Xin chào :</div> &nbsp; &nbsp; <b><div id="user-info"></div></b> &nbsp; &nbsp;<div style="margin-top: 14px">| <a onclick="Logout()" title="Log out">Log out</a></div>
         </div>
         <!--NAVIGATION BAR-->
         <ul class="navigation">
@@ -34,7 +32,9 @@
         <!--NAVIGATION BAR-->
     </div>
 
-    <div class="dropdown">
+    <p style="font-size: 20px; font-weight: 500; margin-left: 5%; text-align: left" class="select-product">Sửa hoá đơn nhập</p>
+
+    <div style="margin-left:5%" class="dropdown">
         <input class="timkiem" type="text" id="searchInputSupplier" placeholder="Search supplier...">
         <div id="supplierDropdown" class="dropdown-content"></div>
     </div>
@@ -43,8 +43,6 @@
         <p id="supplierInfo"></p>
     </div>
 
-
-    <p class="select-product">Edit Bill</p>
     <table id="itemTableBody">
         <thead>
             <tr>
@@ -88,5 +86,5 @@
     </script>
     <!--END FOOTER-->
 </body>
-
+<script src="files/js/login.js"></script>
 </html>

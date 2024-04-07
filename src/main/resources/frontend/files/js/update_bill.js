@@ -55,7 +55,12 @@ window.onload = getAllSupplier;
 
 function saveChanges() {
     var supplierName = document.getElementById("supplierInfo").textContent;
+    if (supplierName == "") {
+        alert('Vui lòng chọn nhà cung cấp!');
+        return;
+    }
     var itemsToSave = [];
+    var ok = 0;
 
     var itemElements = document.querySelectorAll("#itemTableBody tr"); // Lấy tất cả các hàng trong bảng
 
@@ -66,6 +71,7 @@ function saveChanges() {
         var quantityElement = row.querySelector("input[type='number'][id^='quantity_']");
         var priceElement = row.querySelector("input[type='number'][id^='price_']");
 
+
         // Kiểm tra các phần tử có tồn tại không
         if (idElement && billIdElement && productNameElement && quantityElement && priceElement) {
             var id = idElement.textContent;
@@ -73,6 +79,17 @@ function saveChanges() {
             var productName = productNameElement.textContent;
             var quantity = quantityElement.value;
             var price = priceElement.value;
+
+            if(quantity == ""  || price == ""){
+                alert('Vui lòng nhập đầy đủ thông tin sản phẩm!');
+                ok = 1;
+                return;
+            }
+            if(quantity <=0  || price <= 0){
+                alert('Vui lòng nhập số dương!');
+                ok = 1;
+                return;
+            }
 
             itemsToSave.push({
                 id: id,
@@ -87,6 +104,12 @@ function saveChanges() {
         }
     });
 
+    if(ok == 1) return;
+    if(itemsToSave.length == 0){
+        alert('Vui lòng chọn sản phẩm!');
+        return;
+    }
+
 
     var dataToSend = {
         itemsToSave: itemsToSave,
@@ -100,6 +123,7 @@ function saveChanges() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 alert('Selected items have been saved successfully.');
+                window.location.href = 'bill.html';
             } else {
                 alert('Failed to save selected items.');
             }

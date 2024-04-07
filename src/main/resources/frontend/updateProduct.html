@@ -17,16 +17,15 @@
         // Gọi hàm GetProductById() khi trang được tải
         window.onload = GetProductById(id);
     </script>
+
 </head>
 
 <body>
     <!--HEADER-->
     <div class="header">
-        <a href="#" title="Quản lý sản phẩm" style="outline:none;">
-            <h1>SỬA SẢN PHẨM</h1>
-        </a>
-        <div class="logout">
-            Xin chào <b>Trần Thanh Tuấn</b> | <a href="#" title="Log out">Log out
+        <h1>QUẢN LÝ CỬA HÀNG</h1>
+        <div class="logout" style="display: flex">
+            <div style="margin-top: 15px">Xin chào :</div> &nbsp; &nbsp; <b><div id="user-info"></div></b> &nbsp; &nbsp;<div style="margin-top: 14px">| <a onclick="Logout()" title="Log out">Log out</a></div>
         </div>
        <!--NAVIGATION BAR-->
        <ul class="navigation">
@@ -81,5 +80,5 @@
         <!--END FOOTER-->
 
 </body>
-
+<script src="files/js/login.js"></script>
 </html>

@@ -8,16 +8,15 @@
     <link rel="stylesheet" type="text/css" href="files/css/ds_bill.css">
     <link rel="stylesheet" type="text/css" href="files/css/main.css">
     <script src="files/js/bill.js"></script>
+
 </head>
 
 <body>
     <!--HEADER-->
     <div class="header">
-        <a href="#" title="Quản lý cửa hàng" style="outline:none;">
-            <h1>QUẢN LÝ CỬA HÀNG</h1>
-        </a>
-        <div class="logout">
-            Xin chào <b><div id="user-info"></div></b> | <a href="#" title="Log out">Log out</a>
+        <h1>QUẢN LÝ CỬA HÀNG</h1>
+        <div class="logout" style="display: flex">
+            <div style="margin-top: 15px">Xin chào :</div> &nbsp; &nbsp; <b><div id="user-info"></div></b> &nbsp; &nbsp;<div style="margin-top: 14px">| <a onclick="Logout()" title="Log out">Log out</a></div>
         </div>
         <!--NAVIGATION BAR-->
         <ul class="navigation">
@@ -44,11 +43,11 @@
         <table id="billTable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th style="width: 30px; text-align: right;">ID</th>
                     <th>Ngày</th>
                     <th>Nhà cung cấp</th>
-                    <th>Tổng chi phí</th>
-                    <th style="width:150px;">
+                    <th style="text-align: right;">Tổng chi phí</th>
+                    <th style="width:150px; text-align: center;">
                         <a href="createBill.html" name="btnCreateBill" id="btnCreate" title="Thêm bill mới">+ Thêm mới</a>
                     </th>
 
@@ -89,11 +88,11 @@
                     data.forEach(bill => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                            <td>${bill.id}</td>
+                            <td style="text-align: right;">${bill.id}</td>
                             <td>${bill.date}</td>
                             <td>${bill.supplierName || 'Không có'}</td>
-                            <td>${bill.totalCost}</td>
-                            <td>
+                            <td style='text-align: right; width: 200px;'>${bill.totalCost} đ</td>
+                            <td style='width: 300px; text-align: center'>
                                 <a class="lnkSua" name="btnSua${bill.id}" data-id="${bill.id}" title="Sửa" href="update_bill.html?billId=${bill.id}&supplierName=${bill.supplierName}">Sửa</a>
                                 <a class="lnkXoa" name="btnXoa${bill.id}" data-id="${bill.id}" title="Xoá" onclick="DeleteBill(${bill.id})">Xoá</a>
                             </td>
@@ -119,5 +118,6 @@
 
     </script>
 </body>
+<script src="files/js/login.js"></script>
 
 </html>
