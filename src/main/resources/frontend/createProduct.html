@@ -34,19 +34,18 @@
 
         <!--CONTENT-->
         <div class="content">
-            <p class="content-title">Thêm nhà sản phẩm mới</p>
+            <p class="content-title">Thêm sản phẩm mới</p>
             <form id="frmThemSanPhamMoi" method="post" action="#">
                 <p>Tên sản phẩm:</p>
-                <input type="text" class="txt" id="txtName" required style="width:300px;" /> <br/><br/>
+                <input type="text" class="txt" id="txtName" required style="width:300px;" /> <br/>
 
-                <p>Ảnh:</p>
-                <input type="text" class="txt" id="txtImage" required style="width:300px;" /> <br/><br/>
+                <p>Ảnh(URL):</p>
+                <input type="text" class="txt" id="txtImage" required style="width:300px;" /> <br/>
 
                 <p>Giá:</p>
-                <input type="number" class="txt" id="txtOutPrice" required style="width:300px;" step="0.01" /><br/><br/>
-
+                <input type="number" class="txt" id="txtOutPrice" required style="width:300px;" step="0.01" /><br/>
                 <p>Mô tả:</p>
-                <input type="text" class="txt" id="txtDes" required style="width:300px;" /><br/><br/>
+                <input type="text" class="txt" id="txtDes" required style="width:300px;" /><br/> <br/>
 
                 <button type="button" class="btn" id="btnCreateProduct" onclick="CreateProduct()" style="width:50px; height: 30px;">Thêm</button>
             </form>
@@ -54,12 +53,12 @@
         <!--END CONTENT-->
 
         <!--FOOTER-->
-        <div class="footer">
+        <div class="footer" style="	position: fixed; bottom: 0;">
             <p><b>Web quản lý nhà hàng</b></p>
             <span style="line-height:18px;">
-            <b>Người thực hiện:</b><br/>
-            GR_20<br/>
-        </span>
+                <b>Người thực hiện:</b><br/>
+                GR_20<br/>
+            </span>
         </div>
         <!--END FOOTER-->
 

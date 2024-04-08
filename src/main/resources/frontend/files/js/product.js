@@ -64,13 +64,13 @@ function GetProducts() {
                 const li = document.createElement('ul');
                 li.classList.add('danhsach-item');
                 li.innerHTML = `
-                    <li style="width:60px;">${item.id}</li>
-                    <li style="width:300px;">${item.name}</li>
-                    <li style="width:200px;"><img src="${item.image}" style="height: 100px;"</li>
-                    <li style="width:200px; text-align: right;">${item.outPrice} đ</li>
-                    <li style="width:100px; text-align: right;">${item.quantity}</li>
-                    <li style="width:200px; margin-left: 2%">${item.des}</li>
-                    <li style="width:150px; float:right; text-align:right;">
+                    <li style="width:5%; text-align: center;">${item.id}</li>
+                    <li style="width:20%;">${item.name}</li>
+                    <li style="width:10%; text-align: center; height: 30px;"><img src="${item.image}" style="height: 30px;"</li>
+                    <li style="width:15%; text-align: right;">${item.outPrice} đ</li>
+                    <li style="width:10%; text-align: right;">${item.quantity}</li>
+                    <li style="width:20%; margin-left: 4%">${item.des}</li>
+                    <li style="width:15%; text-align:right;">
                         <a class="lnkSua" name="btnSua${item.id}" data-id="${item.id}" title="Sửa" href="updateProduct.html?id=${item.id}">Sửa</a>
                         <a class="lnkXoa" name="btnXoa${item.id}" data-id="${item.id}" title="Xoá" onclick="DeleteProduct(${item.id})">Xoá</a>
                     </li>
@@ -203,13 +203,13 @@ function SearchProducts(keyword) {
                 const li = document.createElement('ul');
                 li.classList.add('danhsach-item');
                 li.innerHTML = `
-                    <li style="width:60px;">${item.id}</li>
-                    <li style="width:300px;">${item.name}</li>
-                    <li style="width:200px;"><img src="${item.image}" style="height: 100px;"</li>
-                    <li style="width:200px; text-align: right;">${item.outPrice} đ</li>
-                    <li style="width:100px; text-align: right;">${item.quantity}</li>
-                    <li style="width:200px; margin-left: 2%">${item.des}</li>
-                    <li style="width:150px; float:right; text-align:right;">
+                    <li style="width:5%; text-align: center;">${item.id}</li>
+                    <li style="width:20%;">${item.name}</li>
+                    <li style="width:10%; text-align: center; height: 30px"><img src="${item.image}" style="height: 30px;"</li>
+                    <li style="width:15%; text-align: right;">${item.outPrice} đ</li>
+                    <li style="width:10%; text-align: right;">${item.quantity}</li>
+                    <li style="width:20%; margin-left: 4%">${item.des}</li>
+                    <li style="width:15%; float:right; text-align:right;">
                         <a class="lnkSua" name="btnSua${item.id}" data-id="${item.id}" title="Sửa" href="updateProduct.html?id=${item.id}">Sửa</a>
                         <a class="lnkXoa" name="btnXoa${item.id}" data-id="${item.id}" title="Xoá" onclick="DeleteProduct(${item.id})">Xoá</a>
                     </li>

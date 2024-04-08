@@ -55,6 +55,7 @@ window.onload = getAllSupplier;
 
 function saveChanges() {
     var supplierName = document.getElementById("supplierInfo").textContent;
+    var bill_id = document.getElementById("bill_id").textContent;
     if (supplierName == "") {
         alert('Vui lòng chọn nhà cung cấp!');
         return;
@@ -66,16 +67,14 @@ function saveChanges() {
 
     itemElements.forEach(row => {
         var idElement = row.querySelector("td:nth-child(1)");
-        var billIdElement = row.querySelector("td:nth-child(2)");
-        var productNameElement = row.querySelector("td:nth-child(3)");
-        var quantityElement = row.querySelector("input[type='number'][id^='quantity_']");
+        var productNameElement = row.querySelector("td:nth-child(2)");
         var priceElement = row.querySelector("input[type='number'][id^='price_']");
+        var quantityElement = row.querySelector("input[type='number'][id^='quantity_']");
 
 
         // Kiểm tra các phần tử có tồn tại không
-        if (idElement && billIdElement && productNameElement && quantityElement && priceElement) {
+        if (idElement && productNameElement && quantityElement && priceElement) {
             var id = idElement.textContent;
-            var billId = billIdElement.textContent;
             var productName = productNameElement.textContent;
             var quantity = quantityElement.value;
             var price = priceElement.value;
@@ -93,7 +92,7 @@ function saveChanges() {
 
             itemsToSave.push({
                 id: id,
-                billId: billId,
+                billId: bill_id,
                 productName: productName,
                 quantity: parseInt(quantity),
                 inPrice: parseFloat(price),
@@ -122,10 +121,10 @@ function saveChanges() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                alert('Selected items have been saved successfully.');
-                window.location.href = 'bill.html';
+                alert('Đơn nhập đã được sửa thành công!');
+                window.location.href = 'detail_bill.html?billId=' + bill_id;
             } else {
-                alert('Failed to save selected items.');
+                alert('Đã có lỗi xảy ra, vui lòng thử lại!');
             }
         }
     };
@@ -133,12 +132,19 @@ function saveChanges() {
 }
 
 
+function getBillDetail(id){
+    fetch("http://localhost:8080/api/bill?bill_id=" + id)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('bill_id').textContent = id;
+            document.getElementById('searchInputSupplier').value = data.supplierName;
+            document.getElementById('supplierInfo').textContent = data.supplierName;
+        })
+        .catch(error => console.error('Error:', error));
+}
 
 
-
-function getAllItem(id, supplierName) {
-    document.getElementById('searchInputSupplier').value = supplierName;
-    document.getElementById('supplierInfo').textContent = supplierName;
+function getAllItem(id) {
 
     fetch("http://localhost:8080/api/bill/get_item?billId=" + id)
         .then(response => response.json())
@@ -147,14 +153,13 @@ function getAllItem(id, supplierName) {
             var itemTableBody = document.getElementById("itemTableBody");
             items.forEach(item => {
                 var row = "<tr>";
-                row += "<td >" + item.id + "</td>";
-                row += "<td>" + item.billId + "</td>";
+                row += "<td>" + item.id + "</td>";
                 row += "<td>" + item.productName + "</td>";
                 let quantity = item.quantity;
                 let inprice = item.inPrice;
 
-                row += "<td><input type='number' id='quantity_" + item.id + "' value='" + quantity + "' placeholder='Quantity'></td>";
-                row += "<td><input type='number' id='price_" + item.id + "' value='" + inprice + "' placeholder='InPrice'></td>";
+                row += "<td style='text-align: right'><input style='text-align: right' type='number' id='price_" + item.id + "' value='" + inprice + "' placeholder='InPrice'></td>";
+                row += "<td style='text-align: right'><input style='text-align: right' type='number' id='quantity_" + item.id + "' value='" + quantity + "' placeholder='Quantity'></td>";
 
                 row += "</tr>";
                 itemTableBody.innerHTML += row;
@@ -162,10 +167,4 @@ function getAllItem(id, supplierName) {
             });
         })
         .catch(error => console.error('Error fetching items:', error));
-}
-
-function selectItem(id, productName, inPrice, quantity) {
-    // Thực hiện các hành động khi chọn sản phẩm ở đây
-    console.log("Selected item:", id, productName, inPrice, quantity);
-    // Ví dụ: Thêm sản phẩm vào đơn hàng hoặc làm bất kỳ thao tác nào khác
 }

@@ -35,7 +35,7 @@
     </div>
     <!--END HEADER-->
     <div style="margin-left: 5%;">
-        <p  class="content-title">Sửa sản phẩm</p>
+        <p  class="content-title">Tạo hoá đơn nhập</p>
         <div style="display: flex;">
             <p >Chọn nhà cung cấp</p>
             <div class="dropdown">
@@ -43,7 +43,7 @@
                 <div id="supplierDropdown" class="dropdown-content"></div>
             </div>
             <div style="margin-left: 3%;" class="show-supplier">
-                <p>Nhà cung cấp : &nbsp;</p>
+                <p>Nhà cung cấp đã chọn: &nbsp;</p>
                 <p id="supplierInfo"></p>
             </div>
         </div>
@@ -60,12 +60,12 @@
             <thead style="position: sticky; top: 0;">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Out Price</th>
-                <th>Quantity</th>
-                <th>Select</th>
+                <th>Tên sản phẩm</th>
+                <th class="center">Ảnh</th>
+                <th>Mô tả</th>
+                <th class="center">Giá bán(VNĐ/sản phẩm)</th>
+                <th class="center">Số lượng</th>
+                <th class="center">Thao tác</th>
             </tr>
             </thead>
             <tbody id="productTableBody">
@@ -79,11 +79,11 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Remove</th>
+                <th>Tên sản phẩm</th>
+                <th class="center">Ảnh</th>
+                <th class="center">Giá nhập(VNĐ/sản phẩm)</th>
+                <th class="center">Số lượng</th>
+                <th class="center">Thao tác</th>
             </tr>
         </thead>
         <tbody id="selectedProductTableBody">

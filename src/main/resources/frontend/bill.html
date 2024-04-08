@@ -93,7 +93,8 @@
                             <td>${bill.supplierName || 'Không có'}</td>
                             <td style='text-align: right; width: 200px;'>${bill.totalCost} đ</td>
                             <td style='width: 300px; text-align: center'>
-                                <a class="lnkSua" name="btnSua${bill.id}" data-id="${bill.id}" title="Sửa" href="update_bill.html?billId=${bill.id}&supplierName=${bill.supplierName}">Sửa</a>
+                                <a class="lnkXem" name="btnXem${bill.id}" data-id="${bill.id}" title="Chi tiết" href="detail_bill.html?billId=${bill.id}">Chi tiết</a>
+                                <a class="lnkSua" name="btnSua${bill.id}" data-id="${bill.id}" title="Sửa" href="update_bill.html?billId=${bill.id}">Sửa</a>
                                 <a class="lnkXoa" name="btnXoa${bill.id}" data-id="${bill.id}" title="Xoá" onclick="DeleteBill(${bill.id})">Xoá</a>
                             </td>
 

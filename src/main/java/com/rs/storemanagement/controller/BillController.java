@@ -106,4 +106,9 @@ public class BillController {
         billService.deleteById(billId);
     }
 
+    @GetMapping("/bill")
+    public Bill findBill(@RequestParam ("bill_id") Integer bill_id){
+        return (Bill) billService.findById(bill_id).orElse(null);
+    }
+
 }

@@ -72,10 +72,10 @@ function selectProduct(id, name, image) {
         var row = "<tr id='selectedProductRow_" + id + "'>";
         row += "<td>" + id + "</td>";
         row += "<td>" + name + "</td>";
-        row += "<td><img src='" + image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
-        row += "<td><input type='number' id='quantity_" + id + "' placeholder='Quantity'></td>";
-        row += "<td><input type='number' id='price_" + id + "' placeholder='Price'></td>";
-        row += "<td><button onclick='removeProduct(" + id + ")'>Remove</button></td>";
+        row += "<td class='center'><img src='" + image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
+        row += "<td class='right'><input class='right' type='number' id='price_" + id + "' placeholder='Price'></td>";
+        row += "<td class='right'><input class='right' type='number' id='quantity_" + id + "' placeholder='Quantity'></td>";
+        row += "<td><button onclick='removeProduct(" + id + ")'>Xoá</button></td>";
         row += "</tr>";
         selectedProductTableBody.innerHTML += row;
     }
@@ -158,11 +158,11 @@ function searchProducts() {
                 var row = "<tr>";
                 row += "<td>" + product.id + "</td>";
                 row += "<td>" + product.name + "</td>";
-                row += "<td><img src='" + product.image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
+                row += "<td class='center'><img src='" + product.image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
                 row += "<td>" + product.des + "</td>";
-                row += "<td style='text-align: right;'>" + product.outPrice + " đ" + "</td>";
-                row += "<td style='text-align: right;'>" + product.quantity + "</td>";
-                row += "<td><button onclick='selectProduct(" + product.id + ", \"" + product.name + "\", \"" + product.image + "\")'>Select</button></td>";
+                row += "<td  class='center' style='text-align: right;'>" + product.outPrice + " đ" + "</td>";
+                row += "<td  class='center' style='text-align: right;'>" + product.quantity + "</td>";
+                row += "<td  class='center'><button onclick='selectProduct(" + product.id + ", \"" + product.name + "\", \"" + product.image + "\")'>Chọn</button></td>";
                 row += "</tr>";
                 productTableBody.innerHTML += row;
             });
@@ -178,11 +178,11 @@ fetch("http://localhost:8080/api/products")
             var row = "<tr>";
             row += "<td>" + product.id + "</td>";
             row += "<td>" + product.name + "</td>";
-            row += "<td><img src='" + product.image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
+            row += "<td class='center'><img src='" + product.image + "' alt='Product Image' style='width: 50px; height: 50px;'></td>";
             row += "<td>" + product.des + "</td>";
-            row += "<td style='text-align: right;'>" + product.outPrice + " đ" +"</td>";
-            row += "<td style='text-align: right;'>" + product.quantity + "</td>";
-            row += "<td><button onclick='selectProduct(" + product.id + ", \"" + product.name + "\", \"" + product.image + "\")'>Select</button></td>";
+            row += "<td class='center' style='text-align: right;'>" + product.outPrice + " đ" +"</td>";
+            row += "<td class='center' style='text-align: right;'>" + product.quantity + "</td>";
+            row += "<td class='center' ><button onclick='selectProduct(" + product.id + ", \"" + product.name + "\", \"" + product.image + "\")'>Chọn</button></td>";
             row += "</tr>";
             productTableBody.innerHTML += row;
         });

@@ -32,14 +32,21 @@
         <!--NAVIGATION BAR-->
     </div>
 
-    <p style="font-size: 20px; font-weight: 500; margin-left: 5%; text-align: left" class="select-product">Sửa hoá đơn nhập</p>
-
-    <div style="margin-left:5%" class="dropdown">
-        <input class="timkiem" type="text" id="searchInputSupplier" placeholder="Search supplier...">
-        <div id="supplierDropdown" class="dropdown-content"></div>
+    <div style="display: flex">
+        <p style="margin-left: 5%;" class="select-product info">Sửa Hoá đơn nhập có ID &nbsp;</p>
+        <p id = "bill_id" class="select-product info"></p>
     </div>
-    <div class="show-supplier">
-        <p>Nhà cung cấp : </p>
+
+    <div style="display: flex; margin-left: 5%">
+        <p class="select-product info">Chọn nhà cung cấp &nbsp;</p>
+        <div class="dropdown">
+            <input class="timkiem" type="text" id="searchInputSupplier" placeholder="Search supplier...">
+            <div id="supplierDropdown" class="dropdown-c ontent"></div>
+        </div>
+    </div>
+
+    <div class="show-supplier info">
+        <p>Nhà cung cấp đã chọn: &nbsp;</p>
         <p id="supplierInfo"></p>
     </div>
 
@@ -47,10 +54,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>BillId</th>
-                <th>ProductName</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th>Tên sản phẩm</th>
+                <th style="text-align: center">Giá nhập(VNĐ/sản phẩm)</th>
+                <th style="text-align: center">Số lượng</th>
 
             </tr>
         </thead>
@@ -59,7 +65,7 @@
         </tbody>
     </table>
 
-    <button class="save" onclick="saveChanges()">Save</button>
+    <button class="save" onclick="saveChanges()">Lưu</button>
 
     <!--FOOTER-->
     <div class="footer">
@@ -76,12 +82,12 @@
         // Phân tích chuỗi URL để lấy tham số 'billId'
         var url = new URL(window.location.href);
         var id = url.searchParams.get("billId");
-        var supplierName = url.searchParams.get("supplierName");
 
         // Gọi hàm getAllItem() khi trang được tải
         window.onload = function() {
-            getAllItem(id, supplierName);
+            getBillDetail(id);
             getAllSupplier();
+            getAllItem(id);
         };
     </script>
     <!--END FOOTER-->
