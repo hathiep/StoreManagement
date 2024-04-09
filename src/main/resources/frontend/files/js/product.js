@@ -13,7 +13,7 @@ function CreateProduct() {
         return; // Dừng hàm nếu có lỗi
     }
 
-    if (name.length > 255 || image.length > 255 || des.length > 255) {
+    if (name.length > 255 || image.length > 1000 || des.length > 255) {
         alert("Giá trị nhập vượt quá giới hạn cho phép (255 ký tự). Vui lòng nhập lại! ");
         return;
     }
