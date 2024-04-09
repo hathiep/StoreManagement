@@ -12,8 +12,14 @@ function CreateProduct() {
         alert('Vui lòng điền đầy đủ thông tin');
         return; // Dừng hàm nếu có lỗi
     }
+
+    if (name.length > 255 || image.length > 255 || des.length > 255) {
+        alert("Giá trị nhập vượt quá giới hạn cho phép (255 ký tự). Vui lòng nhập lại! ");
+        return;
+    }
+
     if (outPrice <= 0) {
-        alert('Giá sản phẩm không hợp lệ! Vui lòng nhập số dương.');
+        alert('Giá sản phẩm không hợp lệ. Vui lòng nhập số dương.');
         return; // Dừng hàm nếu có lỗi
     }
 
@@ -47,7 +53,7 @@ function CreateProduct() {
         })
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
-            alert('Sản phẩm đã có trong hệ thống! Vui lòng chọn tên khác!');
+            alert('Sản phẩm đã có trong hệ thống. Vui lòng chọn tên khác!');
         });
 }
 
