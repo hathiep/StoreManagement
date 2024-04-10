@@ -10,6 +10,10 @@ function CreateSupplier() {
         alert('Vui lòng điền đầy đủ thông tin!');
         return; // Dừng hàm nếu có lỗi
     }
+    if (name.length > 255 || address.length > 255) {
+        alert("Giá trị nhập vượt quá giới hạn cho phép (255 ký tự). Vui lòng nhập lại! ");
+        return;
+    }
     if (!validatePhoneNumber(phone)) {
         alert('Số điện thoại không hợp lệ! Vui lòng nhập 10 chữ số!');
         return; // Dừng hàm nếu có lỗi
