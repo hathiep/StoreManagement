@@ -12,6 +12,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/login")
+    public String showLogin(){
+        return "/login";
+    }
     @PostMapping("/login")
     public User loginUser(@RequestBody User user) {
         return userService.findUserByEnP(user.getEmail(), user.getPassword());
