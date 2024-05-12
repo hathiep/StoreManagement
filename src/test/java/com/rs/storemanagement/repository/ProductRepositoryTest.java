@@ -19,18 +19,19 @@ class ProductRepositoryTest {
     private ProductRepository productRepository;
     @Test
     void searchProduct() {
-        int expected_size = 2;
-        List<Product> productList = (List<Product>) productRepository.searchProduct("muoi");
+        int expected_size = 3;
+        List<Product> productList = (List<Product>) productRepository.searchProduct("dau");
 
         assertEquals(expected_size, productList.size());
     }
     @Test
     void findByName() {
+        int expectedId = 1;
+        Product product = productRepository.findByName("Dầu ăn Mezan");
+        assertEquals(expectedId, product.getId());
     }
 
     @Test
-    @Transactional
-
     void save(){
         Product product = new Product(14, "abc", "abc", "abc", 1, 1);
         Product product2 = productRepository.save(product);
@@ -38,9 +39,20 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void findAll() {
+        int expectedSize = 20;
+        List<Product> listProduct = productRepository.findAll();
+        assertEquals(expectedSize, listProduct.size());
+    }
+
+    @Test
+    void findById() {
+    }
+
+    @Test
     void delete() {
         int expected_number = 1;
-        assertEquals(expected_number, productRepository.deleteByProductId(15));
+        assertEquals(expected_number, productRepository.deleteByProductId(9));
     }
 
 }

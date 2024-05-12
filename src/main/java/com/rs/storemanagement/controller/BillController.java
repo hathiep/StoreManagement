@@ -44,7 +44,6 @@ public class BillController {
         Bill savedBill = billService.save(bill);
         if(savedBill != null) {
             for(Item i : data.getItemsToSave()){
-                sum += i.getTotalPrice();
                 i.setBillId(savedBill.getId());
                 Product product = (Product) productService.findByName(i.getProductName());
                 product.setQuantity(product.getQuantity()+i.getQuantity());
@@ -74,7 +73,6 @@ public class BillController {
 
     @PutMapping("/bill/update")
     public void updateBill(@RequestBody DTO data){
-        System.out.println(data.getSupplierName());
 
         int billId = data.getItemsToSave().get(0).getBillId();
         LocalDate now = billService.findById(billId).get().getDate();

@@ -7,11 +7,6 @@ import java.util.Optional;
 
 public interface ItemService {
     List<Item> findByBillId(int billId);
-    Item save(Item product);
-    List<Item> findAll();
-    Optional<Item> findById(int id);
-    void deleteById(int id);
     void saveAll(List<Item> items);
-
     void deleteByBillId(Integer billId);
 }
