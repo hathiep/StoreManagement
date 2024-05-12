@@ -24,8 +24,8 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> saveAll(List<Item> items){
         for(Item i : items){
-            if(i.getBillId() == null || i.getProductName().equals(null) || i.getInPrice() == null || i.getQuantity() == null || i.getTotalPrice() == null ) return null;
-            if(i.getInPrice() < 0 || i.getQuantity() < 0 || i.getTotalPrice() < 0) return null;
+            if(i.getBillId() == null || i.getProductName() == null || i.getInPrice() == null || i.getQuantity() == null || i.getTotalPrice() == null ) return null;
+            if(i.getInPrice() < 0 || i.getQuantity() < 1 || i.getTotalPrice() < 0) return null;
         }
         return itemRepository.saveAll(items);
     }
