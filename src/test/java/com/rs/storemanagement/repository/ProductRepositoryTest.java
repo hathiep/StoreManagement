@@ -1,3 +1,4 @@
+
 package com.rs.storemanagement.repository;
 
 import com.rs.storemanagement.model.Product;
@@ -58,3 +59,4 @@ class ProductRepositoryTest {
     }
 
 }
+

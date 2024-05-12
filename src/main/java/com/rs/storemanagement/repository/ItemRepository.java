@@ -4,6 +4,7 @@ import com.rs.storemanagement.model.Item;
 import com.rs.storemanagement.model.Product;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,5 +16,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     List<Item> searchItem(@Param("billId") Integer billId);
 
     @Transactional
-    void deleteByBillId(Integer billId);
+    @Modifying
+    @Query(value = "DELETE FROM Item i WHERE i.billId = :billId")
+    int deleteByBillId(@Param("id") int billId);
 }
