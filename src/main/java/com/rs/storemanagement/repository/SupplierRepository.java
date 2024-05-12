@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
     @Query(value = "SELECT * FROM supplier s WHERE" +
-            " s.name LIKE %:keyword% OR", nativeQuery = true)
+            " s.name LIKE %:keyword%", nativeQuery = true)
     List<Supplier> searchSupplier(@Param("keyword") String keyword);
 }
