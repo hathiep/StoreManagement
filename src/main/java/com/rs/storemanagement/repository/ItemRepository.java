@@ -18,5 +18,5 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM Item i WHERE i.billId = :billId")
-    int deleteByBillId(@Param("id") int billId);
+    int deleteByBillId(@Param("billId") int billId);
 }

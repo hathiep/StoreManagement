@@ -41,7 +41,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public void deleteById(int id) {
-        billRepository.deleteById(id);
+    public int deleteById(int id) {
+        return billRepository.deleteById(id);
     }
 }

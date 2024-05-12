@@ -100,8 +100,8 @@ public class BillController {
 
     @DeleteMapping("/bill/delete")
     public void deleteBill(@Param("billId") Integer billId){
-        itemService.deleteByBillId(billId);
-        billService.deleteById(billId);
+        int x = itemService.deleteByBillId(billId);
+        int y = billService.deleteById(billId);
     }
 
     @GetMapping("/bill")

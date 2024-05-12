@@ -12,5 +12,5 @@ public interface BillService {
     List<Bill> search(LocalDate date);
     List<Bill> findAll();
     Optional<Bill> findById(int id);
-    void deleteById(int id);
+    int deleteById(int id);
 }

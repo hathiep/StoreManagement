@@ -26,7 +26,7 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.saveAll(items);
     }
     @Override
-    public void deleteByBillId(Integer billId){
-        itemRepository.deleteByBillId(billId);
+    public int deleteByBillId(Integer billId){
+        return itemRepository.deleteByBillId(billId);
     }
 }
