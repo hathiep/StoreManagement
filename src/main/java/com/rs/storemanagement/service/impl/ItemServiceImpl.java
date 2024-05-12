@@ -22,26 +22,6 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item save(Item Item) {
-        return itemRepository.save(Item);
-    }
-
-    @Override
-    public List<Item> findAll() {
-        return itemRepository.findAll();
-    }
-
-    @Override
-    public Optional<Item> findById(int id) {
-        return itemRepository.findById(id);
-    }
-
-    @Override
-    public void deleteById(int id) {
-        itemRepository.deleteById(id);
-    }
-
-    @Override
     public void saveAll(List<Item> items){
         itemRepository.saveAll(items);
     }
