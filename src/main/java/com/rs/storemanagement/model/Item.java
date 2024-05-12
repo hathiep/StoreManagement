@@ -12,9 +12,9 @@ public class Item {
     private int id;
     private int billId;
     private String productName;
-    private double inPrice;
-    private int quantity;
-    private double totalPrice;
+    private Integer inPrice;
+    private Integer quantity;
+    private Integer totalPrice;
 
     public int getId() {
         return id;
@@ -40,31 +40,31 @@ public class Item {
         this.productName = productName;
     }
 
-    public double getInPrice() {
+    public Integer getInPrice() {
         return inPrice;
     }
 
-    public void setInPrice(double inPrice) {
+    public void setInPrice(Integer inPrice) {
         this.inPrice = inPrice;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public double getTotalPrice() {
+    public Integer getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(Integer totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public Item(int id, int billId, String productName, double inPrice, int quantity, double totalPrice) {
+    public Item(int id, int billId, String productName, Integer inPrice, Integer quantity, Integer totalPrice) {
         this.id = id;
         this.billId = billId;
         this.productName = productName;

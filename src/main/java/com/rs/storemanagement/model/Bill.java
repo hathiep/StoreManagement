@@ -15,17 +15,17 @@ public class Bill {
     private int id;
     private LocalDate date;
     private String supplierName;
-    private double totalCost;
+    private Integer totalCost;
 
 
-    public Bill(int id, LocalDate date, String supplierName, double totalCost) {
+    public Bill(int id, LocalDate date, String supplierName, Integer totalCost) {
         this.id = id;
         this.date = date;
         this.supplierName = supplierName;
         this.totalCost = totalCost;
     }
 
-    public Bill(LocalDate date, String supplierName, double totalCost) {
+    public Bill(LocalDate date, String supplierName, Integer totalCost) {
         this.date = date;
         this.supplierName = supplierName;
         this.totalCost = totalCost;
@@ -59,11 +59,11 @@ public class Bill {
         this.supplierName = supplierName;
     }
 
-    public double getTotalCost() {
+    public Integer getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(double totalCost) {
+    public void setTotalCost(Integer totalCost) {
         this.totalCost = totalCost;
     }
 }

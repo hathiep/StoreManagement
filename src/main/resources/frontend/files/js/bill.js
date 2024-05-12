@@ -111,6 +111,11 @@ function saveSelectedItems() {
             ok = 1;
             return;
         }
+        if(quantity%1!=0  || price%1!=0){
+            alert('Vui lòng nhập số nguyên!');
+            ok = 1;
+            return;
+        }
         itemsToSave.push({
             productName: product.name,
             inPrice: parseFloat(price),

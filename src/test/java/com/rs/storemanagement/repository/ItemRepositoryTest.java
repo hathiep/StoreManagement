@@ -24,26 +24,8 @@ class ItemRepositoryTest {
         assertNotNull(list);
         assertEquals(expectedSize, list.size());
     }
-
     @Test
-    void save() {
-
-    }
-
-    @Test
-    void findAll() {
-    }
-
-    @Test
-    void findById() {
-    }
-
-    @Test
-    void deleteById() {
-    }
-
-    @Test
-    void saveAll() {
+    void updateItemByBillIdSuccess() {
         List<Item> listExpected = new ArrayList<>();
         listExpected.add(new Item(36, 24, "Dầu ăn Mezan", 20000, 90, 1800000));
         listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
@@ -53,6 +35,55 @@ class ItemRepositoryTest {
         List<Item> list = itemRepository.saveAll(listExpected);
         assertEquals(listExpected.get(0).getQuantity(), list.get(0).getQuantity());
     }
+
+    @Test
+    void updateItemByBillIdInPriceNull() {
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(36, 24, "Dầu ăn Mezan", null, 90, 1800000));
+        listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
+        listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
+        listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
+        listExpected.add(new Item(40, 24, "Dầu ăn Neptune 1 lít", 35000, 100, 3500000));
+        List<Item> list = itemRepository.saveAll(listExpected);
+        assertEquals(20000, list.get(0).getInPrice());
+    }
+
+    @Test
+    void updateItemByBillIdQuantityNull() {
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(36, 24, "Dầu ăn Mezan", 20000, null, 1800000));
+        listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
+        listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
+        listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
+        listExpected.add(new Item(40, 24, "Dầu ăn Neptune 1 lít", 35000, 100, 3500000));
+        List<Item> list = itemRepository.saveAll(listExpected);
+        assertEquals(90, list.get(0).getQuantity());
+    }
+
+    @Test
+    void updateItemByBillIdInPriceNegative() {
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(36, 24, "Dầu ăn Mezan", -20000, 90, 1800000));
+        listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
+        listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
+        listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
+        listExpected.add(new Item(40, 24, "Dầu ăn Neptune 1 lít", 35000, 100, 3500000));
+        List<Item> list = itemRepository.saveAll(listExpected);
+        assertEquals(20000, list.get(0).getInPrice());
+    }
+
+    @Test
+    void updateItemByBillIdQuantityNegative() {
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(36, 24, "Dầu ăn Mezan", 20000, -90, 1800000));
+        listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
+        listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
+        listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
+        listExpected.add(new Item(40, 24, "Dầu ăn Neptune 1 lít", 35000, 100, 3500000));
+        List<Item> list = itemRepository.saveAll(listExpected);
+        assertEquals(90, list.get(0).getQuantity());
+    }
+
 
     @Test
     void deleteByBillId() {

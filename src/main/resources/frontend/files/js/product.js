@@ -22,6 +22,10 @@ function CreateProduct() {
         alert('Giá sản phẩm không hợp lệ. Vui lòng nhập số dương.');
         return; // Dừng hàm nếu có lỗi
     }
+    if (outPrice%1!=0) {
+        alert('Giá sản phẩm không hợp lệ! Vui lòng nhập số nguyên.');
+        return; // Dừng hàm nếu có lỗi
+    }
 
     var raw = {
         "name": name,
@@ -118,6 +122,10 @@ function UpdateProduct() {
     }
     if (outPrice <= 0) {
         alert('Giá sản phẩm không hợp lệ! Vui lòng nhập số dương.');
+        return; // Dừng hàm nếu có lỗi
+    }
+    if (outPrice%1!=0) {
+        alert('Giá sản phẩm không hợp lệ! Vui lòng nhập số nguyên.');
         return; // Dừng hàm nếu có lỗi
     }
 
