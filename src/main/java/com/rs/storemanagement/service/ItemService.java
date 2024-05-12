@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface ItemService {
     List<Item> findByBillId(int billId);
-    void saveAll(List<Item> items);
+    List<Item> saveAll(List<Item> items);
     int deleteByBillId(Integer billId);
 }

@@ -10,7 +10,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int billId;
+    private Integer billId;
     private String productName;
     private Integer inPrice;
     private Integer quantity;
@@ -24,11 +24,11 @@ public class Item {
         this.id = id;
     }
 
-    public int getBillId() {
+    public Integer getBillId() {
         return billId;
     }
 
-    public void setBillId(int billId) {
+    public void setBillId(Integer billId) {
         this.billId = billId;
     }
 
@@ -64,7 +64,7 @@ public class Item {
         this.totalPrice = totalPrice;
     }
 
-    public Item(int id, int billId, String productName, Integer inPrice, Integer quantity, Integer totalPrice) {
+    public Item(int id, Integer billId, String productName, Integer inPrice, Integer quantity, Integer totalPrice) {
         this.id = id;
         this.billId = billId;
         this.productName = productName;
