@@ -33,6 +33,7 @@ class ProductRepositoryTest {
         Product product2 = productRepository.save(product);
         assertEquals("Dầu ăn", product2.getName());
         assertEquals(1000, product2.getOutPrice());
+
     }
 
     @Test
