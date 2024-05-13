@@ -29,13 +29,17 @@ public class ProductServiceImpl implements ProductService {
     public Product save(Product product) {
         Product getProduct = productRepository.findByName(product.getName());
         if(getProduct != null){
-            return null;
+            if(getProduct.getId() != product.getId()){
+                return null;
+            }
+            if(product.getName() == null|| product.getImage() == null || product.getQuantity() == null || product.getOutPrice() == null || product.getOutPrice() < 0 || product.getQuantity()<0){
+                return null;
+            }
+            return productRepository.save(product);
         }
         if(product.getName() == null|| product.getImage() == null || product.getQuantity() == null || product.getOutPrice() == null || product.getOutPrice() < 0 || product.getQuantity()<0){
             return null;
         }
-
-
         return productRepository.save(product);
     }
 

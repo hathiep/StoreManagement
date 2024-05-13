@@ -22,13 +22,9 @@ public class ProductController {
     }
     @PostMapping("/product/create")
     public ResponseEntity<String> create(@RequestBody Product product){
-        // Kiểm tra xem sản phẩm đã tồn tại chưa
-        if (productService.findByName(product.getName()) != null) {
+        Product result = productService.save(product);
+        if(result == null)
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Sản phẩm đã có trong hệ thống! Vui lòng chọn tên khác.");
-        }
-
-        // Lưu sản phẩm và trả về phản hồi thành công
-        productService.save(product);
         return ResponseEntity.ok("Thêm sản phẩm thành công!");
     }
 
@@ -52,9 +48,12 @@ public class ProductController {
         productService.deleteById(id);
     }
 
-    @PutMapping("/product/update")
-    public void update(@RequestBody Product product){
-        productService.save(product);
+    @PostMapping("/product/update")
+    public ResponseEntity<String> update(@RequestBody Product product){
+        Product result = productService.save(product);
+        if(result == null)
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Sản phẩm đã có trong hệ thống! Vui lòng chọn tên khác.");
+        return ResponseEntity.ok("Sửa sản phẩm thành công!");
     }
 
 }

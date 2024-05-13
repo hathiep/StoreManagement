@@ -83,6 +83,15 @@ class ProductServiceTest {
     @Test
     @Transactional
     @Rollback
+    void updateProductIsExist(){
+        String update = "Dầu ăn Mezan";
+        Product data = new Product(20,update,"https://www.nissinfoods.vn/upload/cuaxotcaysingapore_-04-01-2021-09-51-30.png","Mì ly Nissin",8000,2);
+        assertEquals(null, productService.save(data));
+    }
+
+    @Test
+    @Transactional
+    @Rollback
     void updateProductSuccess(){
         String update = "Mì ly Nissin goi to";
         Product data = new Product(20,update,"https://www.nissinfoods.vn/upload/cuaxotcaysingapore_-04-01-2021-09-51-30.png","Mì ly Nissin",8000,1);
@@ -203,8 +212,8 @@ class ProductServiceTest {
     @Test
     @Transactional
     @Rollback
-    void updateProductIfQuantityBelow1(){
-        Integer update = 0;
+    void updateProductIfQuantityNegative(){
+        Integer update = -10;
         Product data = new Product(20,"Mì ly Nissin","https://www.nissinfoods.vn/upload/cuaxotcaysingapore_-04-01-2021-09-51-30.png","Mì ly Nissin",8000,update);
         Product result = productService.save(data);;
         assertEquals(null, result);

@@ -2,11 +2,11 @@
 
 function CreateProduct() {
 
-    var name = document.getElementById("txtName").value;
-    var image = document.getElementById("txtImage").value;
+    var name = document.getElementById("txtName").value.trim();
+    var image = document.getElementById("txtImage").value.trim();
     var outPrice = document.getElementById("txtOutPrice").value;
-    // var quantity = document.getElementById("txtQuantity").value;
-    var des = document.getElementById("txtDes").value;
+    var des = document.getElementById("txtDes").value.trim();
+    if(des == "") des = "-Trống-"
 
     if(name == "" || image == "" || outPrice == ""){
         alert('Vui lòng điền đầy đủ thông tin');
@@ -110,11 +110,12 @@ function GetProductById(id) {
 function UpdateProduct() {
 
     var id = document.getElementById('pId').textContent;
-    var name = document.getElementById("txtName").value;
-    var image = document.getElementById("txtImage").value;
+    var name = document.getElementById("txtName").value.trim();
+    var image = document.getElementById("txtImage").value.trim();
     var outPrice = document.getElementById("txtOutPrice").value;
     var quantity = document.getElementById("txtQuantity").textContent;
-    var des = document.getElementById("txtDes").value;
+    var des = document.getElementById("txtDes").value.trim();
+    if(des == "") des = "-Trống-"
 
     if(name == "" || image == "" || outPrice == ""){
         alert('Vui lòng điền đầy đủ thông tin');
@@ -139,7 +140,7 @@ function UpdateProduct() {
     };
 
     var requestOptions = {
-        method: "PUT",
+        method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -151,11 +152,15 @@ function UpdateProduct() {
             if (!response.ok) {
                 throw new Error('Có lỗi xảy ra khi tạo sản phẩm.');
             }
+            console.log(response);
             return response.text();
         })
         .then(result => {
-            alert('Sửa sản phẩm thành công!');
-            location.reload();
+            console.log(result);
+            if(result == null) alert('Sản phẩm đã có trong hệ thống! Vui lòng chọn tên khác!');
+            else{
+                alert('Sửa sản phẩm thành công!');
+            }
         })
         .catch(error => {
             // Xử lý lỗi nếu có

@@ -60,6 +60,17 @@ class ItemServiceTest {
     @Test
     @Transactional
     @Rollback
+    void createItemByBillId_BillIdIsExist() {
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(27, "Dầu ăn Mezan", 20000, 90, 1800000));
+        listExpected.add(new Item(28, "Nước mắm Nam Ngư", 20000, 70, 1400000));
+        List<Item> list = itemService.saveAll(listExpected);
+        assertNull(list);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
     void createItemByBillId_ProductNameIsNull() {
         List<Item> listExpected = new ArrayList<>();
         listExpected.add(new Item(28, null, 20000, 90, 1800000));
@@ -115,9 +126,9 @@ class ItemServiceTest {
     @Test
     @Transactional
     @Rollback
-    void createItemByBillId_QuantityIsNegative() {
+    void createItemByBillId_QuantityIsBelow1() {
         List<Item> listExpected = new ArrayList<>();
-        listExpected.add(new Item(28, "Dầu ăn Mezan", 20000, -90, 1800000));
+        listExpected.add(new Item(28, "Dầu ăn Mezan", 20000, 0, 1800000));
         listExpected.add(new Item(28, "Nước mắm Nam Ngư", 20000, 70, 1400000));
         List<Item> list = itemService.saveAll(listExpected);
         assertNull(list);
@@ -143,6 +154,20 @@ class ItemServiceTest {
     void updateItemByBillId_BillIdIsNull() {
         List<Item> listExpected = new ArrayList<>();
         listExpected.add(new Item(36, null, "Dầu ăn Mezan", 20000, 90, 1800000));
+        listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
+        listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
+        listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
+        listExpected.add(new Item(40, 24, "Dầu ăn Neptune 1 lít", 35000, 100, 3500000));
+        List<Item> list = itemService.saveAll(listExpected);
+        assertNull(list);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    void updateItemByBillId_BillIdIsNotExist() {
+        List<Item> listExpected = new ArrayList<>();
+        listExpected.add(new Item(36, 28, "Dầu ăn Mezan", 20000, 90, 1800000));
         listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
         listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
         listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
@@ -225,9 +250,9 @@ class ItemServiceTest {
     @Test
     @Transactional
     @Rollback
-    void updateItemByBillId_QuantityIsNegative() {
+    void updateItemByBillId_QuantityIsBelow1() {
         List<Item> listExpected = new ArrayList<>();
-        listExpected.add(new Item(36, 24, "Dầu ăn Mezan", 20000, -90, 1800000));
+        listExpected.add(new Item(36, 24, "Dầu ăn Mezan", 20000, 0, 1800000));
         listExpected.add(new Item(37, 24, "Nước mắm Nam Ngư", 20000, 70, 1400000));
         listExpected.add(new Item(38, 24, "Dầu ăn Neptune", 35000, 110, 3850000));
         listExpected.add(new Item(39, 24, "Bột giặt Omo 1kg", 55000, 80, 4400000));
