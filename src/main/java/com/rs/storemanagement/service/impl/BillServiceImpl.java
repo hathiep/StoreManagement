@@ -23,6 +23,10 @@ public class BillServiceImpl implements BillService {
     }
     @Override
     public Bill save(Bill bill){
+
+        if (bill.getDate() == null || bill.getsupplierName() == null || bill.getTotalCost() == null || bill.getTotalCost() <0){
+            return null;
+        }
         return billRepository.save(bill);
     }
 
