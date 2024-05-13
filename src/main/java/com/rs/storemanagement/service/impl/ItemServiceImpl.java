@@ -27,6 +27,14 @@ public class ItemServiceImpl implements ItemService {
             if(i.getBillId() == null || i.getProductName() == null || i.getInPrice() == null || i.getQuantity() == null || i.getTotalPrice() == null ) return null;
             if(i.getInPrice() < 0 || i.getQuantity() < 1 || i.getTotalPrice() < 0) return null;
         }
+        for(Item i : items){
+            if(i.getId()==null && !itemRepository.searchItem(i.getBillId()).isEmpty()){
+                return null;
+            }
+            if(i.getId()!=null && itemRepository.searchItem(i.getBillId()).isEmpty()){
+                return null;
+            }
+        }
         return itemRepository.saveAll(items);
     }
     @Override

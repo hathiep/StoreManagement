@@ -82,7 +82,7 @@ class BillServiceTest {
     @Test
     @Transactional
     @Rollback
-    void finByIdFail(){
+    void findByIdFail(){
         boolean isempty = true;
         int id = 28;
         Optional<Bill> result = billService.findById(id);
