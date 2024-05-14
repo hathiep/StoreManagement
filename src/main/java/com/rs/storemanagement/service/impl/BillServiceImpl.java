@@ -33,6 +33,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public List<Bill> search(LocalDate date) {
+        if (date == null) return null;
         return billRepository.searchBillByDate(date);
     }
     @Override

@@ -28,15 +28,5 @@ public class SupplierController {
         return supplierService.findAll();
     }
 
-    @GetMapping("/supplier")
-    public Supplier getById(@RequestParam(name="id") int id){
-        return (Supplier) supplierService.findById(id).orElse(null);
-    }
-
-    @GetMapping("/suppliers/search")
-    public List<Supplier> searchSuppliers(@RequestParam("keyword") String keyword){
-        return supplierService.findByKeyword(keyword);
-    }
-
 }
 

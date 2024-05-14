@@ -19,10 +19,6 @@ public class SupplierServiceImpl implements SupplierService {
         this.supplierRepository = supplierRepository;
     }
 
-    @Override
-    public List<Supplier> findByKeyword(String keyword) {
-        return supplierRepository.searchSupplier(keyword);
-    }
 
     @Override
     public Supplier save(Supplier supplier) {
@@ -51,9 +47,5 @@ public class SupplierServiceImpl implements SupplierService {
         return supplierRepository.findAll();
     }
 
-    @Override
-    public Optional<Supplier> findById(int id) {
-        return supplierRepository.findById(id);
-    }
 
 }
