@@ -158,6 +158,16 @@ class ProductServiceTest {
     }
 
     @Test
+    @Transactional
+    @Rollback
+    void updateProductIfNameExist2(){
+        String update = "Mì ly Nissin";
+        Product data = new Product(20,update,"https://www.nissinfoods.vn/upload/cuaxotcaysingapore_-04-01-2021-09-51-30.png","Mì ly Nissin",9000,0);
+        Product result = productService.save(data);;
+        assertEquals(data.getOutPrice(), result.getOutPrice());
+    }
+
+    @Test
     void findByIdSuccess(){
         Product expected = new Product(20,"Mì ly Nissin","https://www.nissinfoods.vn/upload/cuaxotcaysingapore_-04-01-2021-09-51-30.png","Mì ly Nissin",8000,0);
         Integer id = 20;
@@ -230,6 +240,13 @@ class ProductServiceTest {
         Product data = null;
         Product findByName = productService.findByName("Mỳ li Nissin");
         assertEquals(data,findByName);
+    }
+
+    @Test
+    void findAllSuccess(){
+        int expectedSize = 20;
+        int actual = productService.findAll().size();
+        assertEquals(expectedSize,actual);
     }
 
 

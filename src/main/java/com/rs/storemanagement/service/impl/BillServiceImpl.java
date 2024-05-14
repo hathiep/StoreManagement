@@ -19,6 +19,7 @@ public class BillServiceImpl implements BillService {
 
     @Autowired
     public BillServiceImpl(BillRepository billRepository) {
+
         this.billRepository = billRepository;
     }
     @Override
