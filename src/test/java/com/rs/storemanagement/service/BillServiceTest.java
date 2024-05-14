@@ -168,4 +168,20 @@ class BillServiceTest {
         List<Bill> billList = (List<Bill>) billService.findAll();
         assertNotEquals(0, billList.size());
     }
+
+    @Test
+    @Transactional
+    @Rollback
+    void searchLocalDateSuccess(){
+        List<Bill> billList = (List<Bill>) billService.search(LocalDate.parse("2024-05-11"));
+        assertEquals(4, billList.size());
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    void searchLocalDateNull(){
+        List<Bill> billList = (List<Bill>) billService.search(null);
+        assertEquals(null, billList);
+    }
 }
