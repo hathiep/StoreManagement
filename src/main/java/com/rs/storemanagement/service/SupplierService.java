@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface SupplierService {
     Supplier save(Supplier supplier);
     List<Supplier> findAll();
-
 }
